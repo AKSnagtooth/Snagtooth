@@ -212,91 +212,75 @@
 
     /* ============ HERO ============ */
     #hero {
-      min-height: 100svh;
+      min-height: 80vh;
       display: flex;
-      align-items: center;
-      padding-top: 100px;
+      align-items: flex-end;
+      padding-top: 120px;
+      padding-bottom: 60px;
       position: relative;
       overflow: hidden;
+      background: var(--black);
     }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(196,92,38,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(196,92,38,0.04) 0%, transparent 60%);
-    }
+    .hero-bg { display: none; }
 
-    .hero-content { position: relative; z-index: 1; }
+    .hero-content { position: relative; z-index: 1; width: 100%; }
 
     .hero-eyebrow {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--orange);
+      color: var(--bone-dim);
+      margin-bottom: 20px;
     }
 
     .hero-headline {
-      font-size: clamp(4rem, 10vw, 10rem);
-      font-weight: 900;
-      line-height: 0.88;
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 14vw, 14rem);
+      line-height: 0.87;
       text-transform: uppercase;
       letter-spacing: -0.01em;
-      margin-bottom: 32px;
-      max-width: 960px;
-    }
-    .hero-headline .line-accent { color: var(--orange); }
-    .hero-headline .line-ghost {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(240,237,230,0.25);
+      color: var(--bone);
+      margin-bottom: 0;
     }
 
-    .hero-sub {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--bone-dim);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 48px;
+    /* HERO ORANGE SUB-SECTION */
+    .hero-orange {
+      background: var(--orange);
+      padding: 60px 0;
+      position: relative;
     }
-    .hero-sub strong { color: var(--bone); font-weight: 600; }
 
-    .hero-actions {
+    .hero-orange-inner {
       display: flex;
       align-items: center;
-      gap: 20px;
+      justify-content: space-between;
+      gap: 40px;
       flex-wrap: wrap;
-      margin-bottom: 60px;
     }
 
-    .hero-proof {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.78rem;
-      color: var(--bone-dim);
-      letter-spacing: 0.06em;
+    .hero-orange-sub {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-style: italic;
+      color: white;
+      max-width: 700px;
+      line-height: 1.2;
     }
-    .hero-proof::before {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 1px;
-      background: var(--bone-dim);
+
+    .hero-orange-proof {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 768px) {
+      .hero-orange-inner { flex-direction: column; align-items: flex-start; }
+      #hero { min-height: 70vh; padding-top: 100px; }
     }
 
     /* ============ LOGO BAR ============ */
@@ -1219,22 +1203,26 @@
         <p class="hero-eyebrow">Creative Production + Paid Media</p>
         <h1 class="hero-headline">
           Your Agency<br>
-          Makes Pretty<br>
-          <span class="line-accent">Ads.</span><br>
-          <span class="line-ghost">We Make</span><br>
-          Ads That <span class="line-accent">Sell.</span>
+          Makes Pretty Ads.<br>
+          We Make<br>
+          Ads That Sell.
         </h1>
-        <p class="hero-sub">
-          <strong>One team. One roof.</strong> The person who builds your ad is the same one reading your dashboard. No handoff. No broken telephone. Just results.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn--primary">Get Started →</a>
-          <a href="#work" class="btn btn--ghost">See the Work</a>
-        </div>
-        <p class="hero-proof">Trusted by BOSS, Maui & Sons, Young Nails, Converse, and the New York Islanders</p>
       </div>
     </div>
   </section>
+
+  <!-- HERO ORANGE SUB-SECTION -->
+  <div class="hero-orange">
+    <div class="container">
+      <div class="hero-orange-inner">
+        <div>
+          <p class="hero-orange-sub">One team, one roof — the person who builds your ad is the same one reading your data.</p>
+          <p class="hero-orange-proof">Trusted by BOSS, Maui &amp; Sons, Young Nails, Converse, and the New York Islanders</p>
+        </div>
+        <a href="#contact" class="btn btn--ghost" style="white-space:nowrap; border-color:white; color:white; flex-shrink:0;">Get Started →</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ============ LOGO BAR ============ -->
   <section id="logos" style="padding:48px 0;">
