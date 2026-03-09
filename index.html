@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snagtooth — Creative Production + Paid Media for DTC Brands</title>
+  <meta name="description" content="We make the ads. We run the ads. One team, one roof — no handoff. Results-driven creative and performance marketing for DTC and lifestyle brands." />
+  <meta property="og:title" content="Snagtooth — Creative Production + Paid Media" />
+  <meta property="og:description" content="We make the ads. We run the ads. CAC drops. That's the pitch." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://snagtooth.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:          #17180F;
+      --charcoal:       #1E1F14;
+      --charcoal-mid:   #242516;
+      --charcoal-light: #2C2D1A;
+      --bone:           #E8E2CC;
+      --bone-dim:       #9E9880;
+      --orange:         #FF5C00;
+      --orange-hot:     #FF6D1A;
+      --orange-dim:     #7A2C00;
+      --gold:           #C9A84C;
+      --line:           rgba(232,226,204,0.08);
+      --line-hot:       rgba(255,92,0,0.25);
+      --font-display:   'Anton', sans-serif;
+      --font-body:      'Barlow', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--bone);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ============ TYPOGRAPHY ============ */
+    h1, h2, h3, h4 { font-family: var(--font-display); line-height: 0.9; letter-spacing: -0.01em; }
+
+    .label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ============ LAYOUT ============ */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .container--narrow { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    section { padding: 100px 0; }
+    @media (max-width: 768px) { section { padding: 70px 0; } }
+
+    /* ============ BUTTONS ============ */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn--primary {
+      background: var(--bone);
+      color: var(--black);
+    }
+    .btn--primary:hover {
+      background: var(--orange);
+      color: white;
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--bone);
+      border: 2px solid var(--bone);
+    }
+    .btn--ghost:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    /* ============ NAV ============ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: background 0.3s ease, padding 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(8,8,8,0.95);
+      backdrop-filter: blur(12px);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .nav-logo svg { height: 36px; width: auto; }
+    .logo-text {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--bone);
+      text-decoration: none;
+    }
+    .logo-text span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--bone); }
+
+    .nav-cta { margin-left: 12px; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--bone);
+      transition: all 0.3s;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--bone);
+      text-decoration: none;
+    }
+    .mobile-menu a:hover { color: var(--orange); }
+    .mobile-menu-close {
+      position: absolute;
+      top: 24px; right: 24px;
+      background: none;
+      border: none;
+      color: var(--bone);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ============ HERO ============ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(196,92,38,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(196,92,38,0.04) 0%, transparent 60%);
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--orange);
+    }
+
+    .hero-headline {
+      font-size: clamp(4rem, 10vw, 10rem);
+      font-weight: 900;
+      line-height: 0.88;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+      max-width: 960px;
+    }
+    .hero-headline .line-accent { color: var(--orange); }
+    .hero-headline .line-ghost {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(240,237,230,0.25);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--bone-dim);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+    .hero-sub strong { color: var(--bone); font-weight: 600; }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .hero-proof {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      color: var(--bone-dim);
+      letter-spacing: 0.06em;
+    }
+    .hero-proof::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--bone-dim);
+    }
+
+    /* ============ LOGO BAR ============ */
+    #logos {
+      padding: 48px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logos-label {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      margin-bottom: 28px;
+      opacity: 0.5;
+    }
+
+    .logos-row {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .logo-pill {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      opacity: 0.45;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .logo-pill:hover { opacity: 0.75; }
+
+    /* ============ PROBLEM ============ */
+    #problem { background: var(--charcoal); }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .problem-headline {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 28px;
+    }
+
+    .problem-body {
+      font-size: 1rem;
+      color: var(--bone-dim);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .problem-body + .problem-body { margin-top: 0; }
+
+    .pain-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .pain-card {
+      padding: 28px 32px;
+      background: var(--charcoal-mid);
+      border-left: 3px solid var(--orange-dim);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .pain-card:hover {
+      border-color: var(--orange);
+      background: var(--charcoal-light);
+    }
+
+    .pain-card-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--bone);
+    }
+
+    .pain-card p {
+      font-size: 0.9rem;
+      color: var(--bone-dim);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 900px) {
+      .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ============ SOLUTION ============ */
+    #solution {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .solution-headline {
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.9;
+      margin-bottom: 20px;
+    }
+    .solution-headline .accent { color: var(--orange); }
+
+    .solution-sub {
+      font-size: 1.05rem;
+      color: var(--bone-dim);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 60px;
+    }
+
+    .solution-body {
+      font-size: 1rem;
+      color: var(--bone-dim);
+      max-width: 620px;
+      line-height: 1.8;
+      margin-bottom: 60px;
+    }
+    .solution-body strong { color: var(--bone); }
+
+    .diff-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+    }
+
+    .diff-card {
+      padding: 40px 32px;
+      background: var(--charcoal);
+      border-top: 2px solid var(--orange);
+    }
+
+    .diff-number {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(196,92,38,0.2);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .diff-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+
+    .diff-card p {
+      font-size: 0.88rem;
+      color: var(--bone-dim);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .diff-cards { grid-template-columns: 1fr; }
+    }
+
+    /* ============ CASE STUDIES ============ */
+    #work { background: var(--charcoal); }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 60px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .section-headline {
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+    }
+
+    .case-studies { display: flex; flex-direction: column; gap: 2px; }
+
+    .case-study {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--charcoal-mid);
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+    .case-study:hover { background: var(--charcoal-light); }
+
+    .cs-content { padding: 56px 48px; }
+    .cs-visual {
+      background: var(--charcoal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 360px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cs-stat-display {
+      text-align: center;
+      padding: 40px;
+    }
+    .cs-stat-big {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 0.9;
+      display: block;
+    }
+    .cs-stat-label {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      margin-top: 12px;
+      display: block;
+    }
+
+    .cs-tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      border: 1px solid var(--orange-dim);
+      padding: 4px 12px;
+      margin-bottom: 20px;
+    }
+
+    .cs-name {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+
+    .cs-problem {
+      font-size: 0.9rem;
+      color: var(--bone-dim);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .cs-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .cs-metric {
+      padding: 16px 20px;
+      background: var(--charcoal-light);
+      border-left: 2px solid var(--orange);
+    }
+    .cs-metric-value {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--bone);
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .cs-metric-label {
+      font-size: 0.72rem;
+      color: var(--bone-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .cs-quote {
+      font-size: 0.88rem;
+      color: var(--bone-dim);
+      font-style: italic;
+      line-height: 1.7;
+      padding-left: 16px;
+      border-left: 2px solid var(--orange-dim);
+    }
+
+    @media (max-width: 900px) {
+      .case-study { grid-template-columns: 1fr; }
+      .cs-visual { min-height: 240px; }
+      .cs-content { padding: 40px 28px; }
+    }
+
+    /* ============ SERVICES ============ */
+    #services {
+      position: relative;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 60px;
+    }
+
+    .service-card {
+      padding: 56px 48px;
+      background: var(--charcoal);
+    }
+
+    .service-icon {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .service-icon::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--orange);
+    }
+
+    .service-title {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+
+    .service-body {
+      font-size: 0.92rem;
+      color: var(--bone-dim);
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .service-list li {
+      font-size: 0.88rem;
+      color: var(--bone-dim);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.5;
+    }
+    .service-list li::before {
+      content: '→';
+      color: var(--orange);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .service-note {
+      margin-top: 32px;
+      padding: 20px 24px;
+      border: 1px solid var(--line);
+      font-size: 0.82rem;
+      color: var(--bone-dim);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .not-included {
+      margin-top: 60px;
+      padding: 40px 48px;
+      background: var(--charcoal);
+      border-top: 1px solid var(--line);
+    }
+
+    .not-included-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      margin-bottom: 16px;
+    }
+
+    .not-included p {
+      font-size: 0.88rem;
+      color: var(--bone-dim);
+      line-height: 1.7;
+    }
+    .not-included strong { color: var(--bone); }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card, .not-included { padding: 40px 28px; }
+    }
+
+    /* ============ PROCESS ============ */
+    #process { background: var(--charcoal); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+    }
+
+    .process-step {
+      padding: 48px 36px;
+      background: var(--charcoal-mid);
+      position: relative;
+    }
+
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 900;
+      color: rgba(196,92,38,0.15);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .step-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .step-body {
+      font-size: 0.9rem;
+      color: var(--bone-dim);
+      line-height: 1.7;
+    }
+
+    .process-coda {
+      margin-top: 48px;
+      padding: 32px 40px;
+      border-left: 3px solid var(--orange);
+      background: rgba(196,92,38,0.04);
+    }
+    .process-coda p {
+      font-size: 1rem;
+      color: var(--bone-dim);
+      line-height: 1.7;
+    }
+    .process-coda strong { color: var(--bone); }
+
+    @media (max-width: 900px) {
+      .process-steps { grid-template-columns: 1fr; }
+    }
+
+    /* ============ TESTIMONIALS ============ */
+    #testimonials {}
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+    }
+
+    .testimonial {
+      padding: 48px 36px;
+      background: var(--charcoal);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testimonial-quote {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--bone);
+      flex: 1;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+    .testimonial-quote::before {
+      content: '\201C';
+      font-family: var(--font-display);
+      font-size: 3rem;
+      color: var(--orange);
+      line-height: 0;
+      vertical-align: -0.5em;
+      margin-right: 4px;
+    }
+
+    .testimonial-author {
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+    }
+    .testimonial-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--bone);
+      margin-bottom: 4px;
+    }
+    .testimonial-title {
+      font-size: 0.78rem;
+      color: var(--bone-dim);
+    }
+
+    @media (max-width: 900px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============ PRICING ============ */
+    #pricing { background: var(--charcoal); }
+
+    .pricing-card {
+      max-width: 760px;
+      margin: 60px auto 0;
+      background: var(--charcoal-mid);
+      border: 1px solid var(--line);
+      padding: 56px 56px;
+    }
+
+    .pricing-amount {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 8px;
+    }
+    .pricing-amount span { color: var(--orange); }
+
+    .pricing-range {
+      font-size: 0.88rem;
+      color: var(--bone-dim);
+      margin-bottom: 40px;
+    }
+
+    .pricing-includes {
+      margin-bottom: 40px;
+    }
+    .pricing-includes-title {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      margin-bottom: 16px;
+    }
+    .pricing-includes ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pricing-includes li {
+      font-size: 0.9rem;
+      color: var(--bone-dim);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .pricing-includes li::before {
+      content: '✓';
+      color: var(--orange);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    .pricing-note {
+      font-size: 0.82rem;
+      color: var(--bone-dim);
+      line-height: 1.7;
+      padding: 20px 24px;
+      border: 1px solid var(--line);
+      margin-top: 32px;
+    }
+    .pricing-note strong { color: var(--bone); }
+
+    @media (max-width: 768px) {
+      .pricing-card { padding: 36px 28px; }
+    }
+
+    /* ============ CONTACT FORM ============ */
+    #contact { position: relative; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .contact-left p {
+      font-size: 0.95rem;
+      color: var(--bone-dim);
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .contact-detail {
+      margin-bottom: 16px;
+    }
+    .contact-detail-label {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+    .contact-detail-value {
+      font-size: 0.9rem;
+      color: var(--bone);
+    }
+
+    /* FORM STYLES */
+    .form-container { position: relative; }
+
+    .form-step {
+      display: none;
+    }
+    .form-step.active { display: block; }
+
+    .form-step-indicator {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+    .step-dot {
+      width: 24px;
+      height: 2px;
+      background: var(--line);
+      transition: background 0.3s;
+    }
+    .step-dot.active { background: var(--orange); }
+
+    .form-group { margin-bottom: 20px; }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      background: var(--charcoal);
+      border: 1px solid var(--line);
+      color: var(--bone);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--orange);
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: rgba(240,237,230,0.25); }
+
+    .form-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8b3aa' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+    .form-select option { background: var(--charcoal); }
+
+    .form-textarea { min-height: 100px; resize: vertical; }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--charcoal);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .radio-option:hover { border-color: var(--orange-dim); }
+    .radio-option input { display: none; }
+    .radio-option.selected { border-color: var(--orange); }
+
+    .radio-dot {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--bone-dim);
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .radio-option.selected .radio-dot {
+      border-color: var(--orange);
+    }
+    .radio-option.selected .radio-dot::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    .radio-label {
+      font-size: 0.9rem;
+      color: var(--bone-dim);
+    }
+    .radio-option.selected .radio-label { color: var(--bone); }
+
+    .form-submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* CONFIRMATION */
+    .form-confirmation { display: none; }
+    .form-confirmation.show { display: block; }
+    .form-confirmation h3 {
+      font-size: 2.4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+    .form-confirmation p {
+      font-size: 0.95rem;
+      color: var(--bone-dim);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .calendly-link {
+      color: var(--bone);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .calendly-link:hover { color: var(--orange); }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      padding: 48px 0 32px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: var(--bone-dim);
+      margin-top: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--bone); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .footer-legal {
+      font-size: 0.72rem;
+      color: var(--bone-dim);
+      opacity: 0.5;
+    }
+
+    /* ============ SCROLL ANIMATIONS ============ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ============ UTILITIES ============ */
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--orange);
+      margin: 24px 0;
+    }
+
+    .text-orange { color: var(--orange); }
+    .text-dim { color: var(--bone-dim); }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          <!-- REPLACE with actual logo file: <img src="logo.svg" alt="Snagtooth" style="height:40px;"> -->
+          <svg width="160" height="44" viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="156" height="40" rx="6" fill="var(--orange)"/>
+            <rect x="2" y="2" width="156" height="40" rx="6" stroke="#1C1E14" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="80" y="30" text-anchor="middle" font-family="'Big Shoulders Display', sans-serif" font-weight="900" font-size="22" fill="#16180F" letter-spacing="1">SNAGTOOTH</text>
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Why Us</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn btn--primary nav-cta">Book a Call →</a>
+        <button class="nav-hamburger" id="hamburgerBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose">✕</button>
+    <a href="#work" class="mobile-link">Work</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#process" class="mobile-link">Why Us</a>
+    <a href="#pricing" class="mobile-link">Pricing</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="#contact" class="btn btn--primary" style="margin-top:16px;">Book a Call →</a>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Creative Production + Paid Media</p>
+        <h1 class="hero-headline">
+          Your Agency<br>
+          Makes Pretty<br>
+          <span class="line-accent">Ads.</span><br>
+          <span class="line-ghost">We Make</span><br>
+          Ads That <span class="line-accent">Sell.</span>
+        </h1>
+        <p class="hero-sub">
+          <strong>One team. One roof.</strong> The person who builds your ad is the same one reading your dashboard. No handoff. No broken telephone. Just results.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn--primary">Get Started →</a>
+          <a href="#work" class="btn btn--ghost">See the Work</a>
+        </div>
+        <p class="hero-proof">Trusted by BOSS, Maui & Sons, Young Nails, Converse, and the New York Islanders</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOGO BAR ============ -->
+  <section id="logos" style="padding:48px 0;">
+    <div class="container">
+      <p class="logos-label">Brands We've Built For</p>
+      <div class="logos-row">
+        <span class="logo-pill">VANS</span>
+        <span class="logo-pill">Young Nails</span>
+        <span class="logo-pill">Converse</span>
+        <span class="logo-pill">Seldom Seen</span>
+        <span class="logo-pill">BOSS</span>
+        <span class="logo-pill">Univ. of Oregon</span>
+        <span class="logo-pill">Adidas</span>
+        <span class="logo-pill">Fucking Awesome</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section id="problem">
+    <div class="container">
+      <div class="problem-grid">
+        <div class="reveal">
+          <p class="label">The Broken Model</p>
+          <h2 class="problem-headline">Your Creative Team and Your Media Buyer Have Never Spoken.</h2>
+          <div class="divider"></div>
+          <p class="problem-body">You're paying one team to make ads. Another one — or the same agency's "other department" — to run them. The brief gets lost in translation. The creative looks great in a deck and dies on day three in the account.</p>
+          <p class="problem-body">Meanwhile, your CAC is climbing. Your ROAS is sliding. And your agency just sent you a monthly report full of impressions and reach instead of the numbers you actually care about.</p>
+          <p class="problem-body" style="color:var(--bone); font-weight:500;">Sound familiar?</p>
+        </div>
+        <div class="pain-cards reveal reveal-delay-2">
+          <div class="pain-card">
+            <p class="pain-card-title">Creative That Doesn't Convert</p>
+            <p>Beautiful ads. Terrible CAC. Your agency's creative team hasn't looked at your Ads Manager once.</p>
+          </div>
+          <div class="pain-card">
+            <p class="pain-card-title">Media Buyers Flying Blind</p>
+            <p>Your media buyer is optimizing in a vacuum. They didn't make the creative. They can't change the creative. So they adjust the targeting and hope.</p>
+          </div>
+          <div class="pain-card">
+            <p class="pain-card-title">Reports That Say Nothing</p>
+            <p>Reach. Impressions. Engagement rate. None of these pay your rent. You want CAC, ROAS, and revenue. You keep getting slideshows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOLUTION ============ -->
+  <section id="why">
+    <div class="container">
+      <div class="reveal">
+        <p class="label">The Snagtooth Way</p>
+        <h2 class="solution-headline">We Make the Ads.<br><span class="accent">We Run the Ads.</span></h2>
+        <p class="solution-sub">That's not a tagline. It's the entire business model.</p>
+        <p class="solution-body">At Snagtooth, the creative team and the media buying team are the same people. When something isn't converting, we see it in the data and fix it in the creative — same day, same team, no email chain. <strong>No account managers playing telephone. No "we'll flag that for the creative team."</strong> Just two sharp operators who've done this for brands with real budgets and real stakes — and the numbers to prove it.</p>
+      </div>
+      <div class="diff-cards reveal reveal-delay-1">
+        <div class="diff-card">
+          <div class="diff-number">01</div>
+          <h3 class="diff-title">One Roof. No Handoff.</h3>
+          <p>The person who designs your ad is the person who reads your dashboard. When performance drops, we fix it — not send a message to another team.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-number">02</div>
+          <h3 class="diff-title">Built to Convert.</h3>
+          <p>We've worked at the highest levels of creative production. We use that to make ads that stop the scroll <em>and</em> move product — not win awards.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-number">03</div>
+          <h3 class="diff-title">Lean by Design.</h3>
+          <p>No 50-person agency overhead. You work with the people doing the work. Fast, sharp, and your retainer stays honest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASE STUDIES ============ -->
+  <section id="work">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <p class="label">The Receipts</p>
+          <h2 class="section-headline">We Don't<br>Sell Vibes.</h2>
+        </div>
+        <p style="font-size:0.95rem; color:var(--bone-dim); max-width:320px; line-height:1.7;">Here's what we've actually done, with the numbers to back it up.</p>
+      </div>
+
+      <div class="case-studies">
+        <!-- BOSS -->
+        <div class="case-study reveal">
+          <div class="cs-content">
+            <span class="cs-tag">Brand Revival + Performance Media</span>
+            <h3 class="cs-name">Boulder Outdoor Survival School</h3>
+            <p class="cs-problem">A respected legacy nonprofit on the brink — outdated brand, fragmented messaging, declining enrollment, no acquisition engine. We rebuilt everything: brand, website, content, paid media.</p>
+            <div class="cs-metrics">
+              <div class="cs-metric">
+                <span class="cs-metric-value">218</span>
+                <span class="cs-metric-label">Enrollments (2026 pace)</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric-value">63</span>
+                <span class="cs-metric-label">Enrollments in 2024</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric-value">$206</span>
+                <span class="cs-metric-label">CAC on a $6,300 product</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric-value">2×</span>
+                <span class="cs-metric-label">Instagram growth (7K→15K+)</span>
+              </div>
+            </div>
+            <p class="cs-quote">We didn't "run ads." We built a growth system that made BOSS culturally relevant and commercially sustainable.</p>
+          </div>
+          <div class="cs-visual">
+            <div class="cs-stat-display">
+              <span class="cs-stat-big">246%</span>
+              <span class="cs-stat-label">Enrollment growth YoY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONVERSE -->
+        <div class="case-study reveal" style="flex-direction:row-reverse;">
+          <div class="cs-content">
+            <span class="cs-tag">Campaign Launch + Paid Media</span>
+            <h3 class="cs-name">FA × Converse</h3>
+            <p class="cs-problem">Sell 1,000 shoes in 30 days. Full PDP, 6–12 ads covering the entire funnel, targeted streetwear and skate-adjacent audiences with drip-fed storytelling.</p>
+            <div class="cs-metrics">
+              <div class="cs-metric">
+                <span class="cs-metric-value">119×</span>
+                <span class="cs-metric-label">ROAS in first 48 hours</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric-value">$7.95</span>
+                <span class="cs-metric-label">Cost per purchase</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric-value">28.78×</span>
+                <span class="cs-metric-label">Average ROAS over 30 days</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric-value">934</span>
+                <span class="cs-metric-label">Pairs sold in 30 days</span>
+              </div>
+            </div>
+            <p class="cs-quote">The hype was real. The shoes? Gone.</p>
+          </div>
+          <div class="cs-visual">
+            <div class="cs-stat-display">
+              <span class="cs-stat-big">119×</span>
+              <span class="cs-stat-label">ROAS — first 48 hours</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MIDDLE CALLING -->
+        <div class="case-study reveal">
+          <div class="cs-content">
+            <span class="cs-tag">Channel Growth + Paid Acquisition</span>
+            <h3 class="cs-name">Middle Calling</h3>
+            <p class="cs-problem">Build a political channel from zero. Reach people politically homeless — stuck in the middle — and build something they'd actually want to join. Then use paid to make it inevitable.</p>
+            <div class="cs-metrics">
+              <div class="cs-metric">
+                <span class="cs-metric-value">90K</span>
+                <span class="cs-metric-label">Followers from zero</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric-value">$0.41</span>
+                <span class="cs-metric-label">Cost per follow</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric-value">93rd</span>
+                <span class="cs-metric-label">Percentile growth on Meta</span>
+              </div>
+              <div class="cs-metric">
+                <span class="cs-metric-value">836/day</span>
+                <span class="cs-metric-label">Current follower velocity</span>
+              </div>
+            </div>
+            <p class="cs-quote">We didn't buy followers. We built a message people wanted to join — then used paid to make it inevitable.</p>
+          </div>
+          <div class="cs-visual">
+            <div class="cs-stat-display">
+              <span class="cs-stat-big">$0.41</span>
+              <span class="cs-stat-label">Cost per follower</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services">
+    <div class="container">
+      <div class="reveal">
+        <p class="label">What We Do</p>
+        <h2 class="section-headline">Two Things.<br><span class="text-orange">Both Exceptional.</span></h2>
+        <div class="divider"></div>
+        <p style="font-size:1rem; color:var(--bone-dim); max-width:540px; line-height:1.75; margin-top:8px;">We are not a full-service agency. We do two things and we do them at a level most agencies can't match with ten.</p>
+      </div>
+
+      <div class="services-grid reveal reveal-delay-1">
+        <div class="service-card">
+          <p class="service-icon">01 — Creative</p>
+          <h3 class="service-title">Creative Production</h3>
+          <p class="service-body">High-end ad creative built to perform — not to sit in a portfolio deck. Strategy, concept, production, and iteration all in house.</p>
+          <ul class="service-list">
+            <li>Concept development and creative strategy</li>
+            <li>Video production — anthem, short-form, UGC-style</li>
+            <li>Static and motion ad creative (Meta, Google, YouTube)</li>
+            <li>Landing page design and copywriting</li>
+            <li>Brand refresh and visual identity (when it's the root of the problem)</li>
+          </ul>
+          <p class="service-note">Production quality from a former LA Kings Creative Director. Built for the data, not the awards shelf.</p>
+        </div>
+        <div class="service-card">
+          <p class="service-icon">02 — Media</p>
+          <h3 class="service-title">Paid Media</h3>
+          <p class="service-body">Meta and Google Ads managed by people who made the creative they're running. When something's off, we see it and fix it — same team, same day.</p>
+          <ul class="service-list">
+            <li>Campaign architecture and audience strategy</li>
+            <li>Creative testing frameworks (thumbstop, CTR, CAC by creative)</li>
+            <li>Weekly optimization based on real performance data</li>
+            <li>Retargeting systems and funnel sequencing</li>
+            <li>Reporting on CAC, ROAS, and revenue — not vanity metrics</li>
+          </ul>
+          <p class="service-note">We report on the numbers that affect your P&amp;L. That's it.</p>
+        </div>
+      </div>
+
+      <div class="not-included reveal">
+        <p class="not-included-title">What We Don't Do</p>
+        <p>Organic social. Community management. Influencer outreach. SEO. Email marketing. Podcast production. PR. <strong>We stay in our lane because our lane is where we win.</strong> If you need those things, we'll point you to someone good.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section id="process">
+    <div class="container">
+      <div class="reveal">
+        <p class="label">The Process</p>
+        <h2 class="section-headline">Simple. Fast.<br><span class="text-orange">No 90-Day Ramp.</span></h2>
+      </div>
+      <div class="process-steps reveal reveal-delay-1">
+        <div class="process-step">
+          <div class="step-number">01</div>
+          <h3 class="step-title">We Audit</h3>
+          <p class="step-body">We get into your ad account, your creative, and your data. We find what's broken and what's working. No agenda — just a clear picture of where you are and what needs to happen next.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">02</div>
+          <h3 class="step-title">We Build</h3>
+          <p class="step-body">New creative. New campaign architecture. Built to convert from day one — not after three months of "testing and learning" with your budget on the line.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">03</div>
+          <h3 class="step-title">We Optimize</h3>
+          <p class="step-body">We're in the account weekly. Creative is updated based on data. You get one clear report on what happened and what's next. One invoice. One team.</p>
+        </div>
+      </div>
+      <div class="process-coda reveal">
+        <p>Most brands start seeing movement in the first 30 days. Not because we're magic — <strong>because we don't waste time.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <p class="label">What People Say</p>
+          <h2 class="section-headline">Don't Take<br>Our Word.</h2>
+        </div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial reveal">
+          <p class="testimonial-quote">Snagtooth understood our vision and helped build it out flawlessly. Amazing talent and a very fun team to work with. Great energy and professionalism. Can't wait to work with the team again.</p>
+          <div class="testimonial-author">
+            <p class="testimonial-name">Nick Sultana</p>
+            <p class="testimonial-title">Creative Director, New York Islanders</p>
+          </div>
+        </div>
+        <div class="testimonial reveal reveal-delay-1">
+          <p class="testimonial-quote">Working with Snagtooth was an incredible experience. Their creative energy and strategic insight brought our rebrand to life, delivering a visually stunning, on-brand piece that continues to drive strong engagement.</p>
+          <div class="testimonial-author">
+            <p class="testimonial-name">Habib Salo</p>
+            <p class="testimonial-title">CEO, Young Nails</p>
+          </div>
+        </div>
+        <div class="testimonial reveal reveal-delay-2">
+          <p class="testimonial-quote">Aleks is excellent at what he does — delivering insightful strategy and first-rate implementation. He has helped us grow several channels from dormant or non-existent to thriving and high-performing. I now recommend him and Snagtooth to everyone.</p>
+          <div class="testimonial-author">
+            <p class="testimonial-name">Jay Carson</p>
+            <p class="testimonial-title">Creator, The Morning Show &amp; House of Cards</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section id="pricing" >
+    <div class="container">
+      <div class="reveal">
+        <p class="label">What It Costs</p>
+        <h2 class="section-headline">Honest Pricing.<br><span class="text-orange">No Surprises.</span></h2>
+        <div class="divider"></div>
+        <p style="font-size:0.95rem; color:var(--bone-dim); max-width:520px; line-height:1.75;">Month-to-month retainers. No long-term contracts. If we're not performing, you shouldn't stay. It's that simple.</p>
+      </div>
+
+      <div class="pricing-card reveal">
+        <h3 class="pricing-amount">Retainers from <span>$2,000/mo</span></h3>
+        <p class="pricing-range">Most engagements run $3,000–$6,000/month depending on scope and ad spend.</p>
+        <div class="pricing-includes">
+          <p class="pricing-includes-title">What's included</p>
+          <ul>
+            <li>Creative production (volume based on tier)</li>
+            <li>Paid media management — Meta and/or Google</li>
+            <li>Weekly performance optimization</li>
+            <li>Monthly reporting on CAC, ROAS, and revenue impact</li>
+            <li>Direct access to the people actually doing the work</li>
+          </ul>
+        </div>
+        <a href="#contact" class="btn btn--primary">Talk to Us About Your Brand →</a>
+        <div class="pricing-note">
+          <strong>Ad spend is separate</strong> — that's your budget, we manage it. We take on a limited number of new clients per quarter. If the timing isn't right, we'll tell you.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT FORM ============ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left reveal">
+          <p class="label">Let's Talk</p>
+          <h2>Tell Us About<br><span class="text-orange">Your Brand.</span></h2>
+          <p>Fill this out and we'll come back to you within 24 hours. If it looks like a fit, we'll set up a call. If it's not, we'll tell you that too.</p>
+          <div class="contact-detail">
+            <p class="contact-detail-label">Response time</p>
+            <p class="contact-detail-value">Within 24 hours</p>
+          </div>
+          <div class="contact-detail">
+            <p class="contact-detail-label">Retainers start at</p>
+            <p class="contact-detail-value">$2,000/month</p>
+          </div>
+          <div class="contact-detail">
+            <p class="contact-detail-label">Contract type</p>
+            <p class="contact-detail-value">Month-to-month</p>
+          </div>
+        </div>
+
+        <div class="form-container reveal reveal-delay-1">
+          <!-- STEP INDICATORS -->
+          <div class="form-step-indicator" id="stepIndicator">
+            <div class="step-dot active" id="dot1"></div>
+            <div class="step-dot" id="dot2"></div>
+          </div>
+
+          <!-- STEP 1 -->
+          <div class="form-step active" id="step1">
+            <div class="form-group">
+              <label class="form-label" for="firstName">First Name *</label>
+              <input class="form-input" type="text" id="firstName" placeholder="Alex" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email *</label>
+              <input class="form-input" type="email" id="email" placeholder="alex@yourbrand.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="brandName">Brand Name *</label>
+              <input class="form-input" type="text" id="brandName" placeholder="Your Brand" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="website">Website URL *</label>
+              <input class="form-input" type="url" id="website" placeholder="https://yourbrand.com" required />
+            </div>
+            <div class="form-submit-row">
+              <button class="btn btn--primary" onclick="goToStep2()">Continue →</button>
+              <span style="font-size:0.78rem; color:var(--bone-dim);">Step 1 of 2</span>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="form-step" id="step2">
+            <div class="form-group">
+              <label class="form-label">Monthly Ad Budget</label>
+              <select class="form-select" id="adBudget">
+                <option value="">Select your range</option>
+                <option>Not running ads yet</option>
+                <option>Under $5,000</option>
+                <option>$5,000 – $15,000</option>
+                <option>$15,000 – $50,000</option>
+                <option>$50,000+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Biggest Challenge</label>
+              <div class="radio-group" id="challengeGroup">
+                <div class="radio-option" onclick="selectRadio(this)">
+                  <input type="radio" name="challenge" value="creative" />
+                  <div class="radio-dot"></div>
+                  <span class="radio-label">Creative that actually converts</span>
+                </div>
+                <div class="radio-option" onclick="selectRadio(this)">
+                  <input type="radio" name="challenge" value="media" />
+                  <div class="radio-dot"></div>
+                  <span class="radio-label">Scaling paid media profitably</span>
+                </div>
+                <div class="radio-option" onclick="selectRadio(this)">
+                  <input type="radio" name="challenge" value="both" />
+                  <div class="radio-dot"></div>
+                  <span class="radio-label">Both — need to rebuild from scratch</span>
+                </div>
+                <div class="radio-option" onclick="selectRadio(this)">
+                  <input type="radio" name="challenge" value="zero" />
+                  <div class="radio-dot"></div>
+                  <span class="radio-label">Starting from zero</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="notes">Anything else? <span style="opacity:0.5;">(optional)</span></label>
+              <textarea class="form-textarea" id="notes" placeholder="What's the context?"></textarea>
+            </div>
+            <div class="form-submit-row">
+              <button class="btn btn--primary" onclick="submitForm()">Submit →</button>
+              <button onclick="goToStep1()" style="background:none;border:none;color:var(--bone-dim);cursor:pointer;font-size:0.85rem;text-decoration:underline;">← Back</button>
+            </div>
+          </div>
+
+          <!-- CONFIRMATION -->
+          <div class="form-confirmation" id="formConfirmation">
+            <h3>Nice.</h3>
+            <p>We've got your info. Expect to hear from us within 24 hours.</p>
+            <p>Want to skip the wait? <a href="#" class="calendly-link">Book a call directly →</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <!-- REPLACE with actual logo file when available -->
+          <svg width="140" height="38" viewBox="0 0 140 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="138" height="36" rx="5" fill="var(--orange)"/>
+            <rect x="1" y="1" width="138" height="36" rx="5" stroke="#1C1E14" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="70" y="25" text-anchor="middle" font-family="'Big Shoulders Display', sans-serif" font-weight="900" font-size="18" fill="#16180F" letter-spacing="1">SNAGTOOTH</text>
+          </svg>
+          <p class="footer-tagline">Creative Production + Paid Media</p>
+        </div>
+        <div class="footer-links">
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#process">Why Us</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">© 2026 Snagtooth. All rights reserved.</p>
+        <p class="footer-legal">Privacy Policy</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // NAV SCROLL
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // HAMBURGER
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    hamburgerBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // SCROLL REVEAL
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // FORM STEPS
+    function goToStep2() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const brandName = document.getElementById('brandName').value.trim();
+      const website = document.getElementById('website').value.trim();
+      if (!firstName || !email || !brandName || !website) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      document.getElementById('step1').classList.remove('active');
+      document.getElementById('step2').classList.add('active');
+      document.getElementById('dot1').classList.remove('active');
+      document.getElementById('dot2').classList.add('active');
+    }
+
+    function goToStep1() {
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('step1').classList.add('active');
+      document.getElementById('dot2').classList.remove('active');
+      document.getElementById('dot1').classList.add('active');
+    }
+
+    function selectRadio(el) {
+      document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
+      el.classList.add('selected');
+      el.querySelector('input').checked = true;
+    }
+
+    function submitForm() {
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('stepIndicator').style.display = 'none';
+      document.getElementById('formConfirmation').classList.add('show');
+    }
+  </script>
+</body>
+</html>
