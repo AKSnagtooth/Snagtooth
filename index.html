@@ -732,7 +732,7 @@
     }
 
     /* ============ PROCESS ============ */
-    #process { background: var(--orange); }
+    #process { background: var(--orange); position: relative; }
 
     .process-steps {
       display: grid;
@@ -1208,6 +1208,49 @@
 
     .text-orange { color: var(--orange); }
     .text-dim { color: var(--bone-dim); }
+
+    /* ============ HALFTONE TEXTURE ============ */
+    .hero-orange::after,
+    #logos::after,
+    #why::after,
+    #process::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.12) 1px, transparent 1px);
+      background-size: 18px 18px;
+      z-index: 0;
+    }
+
+    .hero-orange > *,
+    #logos > *,
+    #why > *,
+    #process > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============ MOBILE 375px POLISH ============ */
+    @media (max-width: 480px) {
+      .container { padding: 0 20px; }
+
+      /* Hero */
+      #hero { padding-top: 80px; padding-bottom: 40px; }
+      .hero-orange { padding: 40px 0; }
+      .hero-orange-inner { gap: 24px; }
+      .btn--ghost[href="#contact"] { width: 100%; text-align: center; }
+
+      /* Partners */
+      #logos { padding: 48px 0; }
+      .logos-row { gap: 24px; }
+
+      /* Pricing */
+      .pricing-card { padding: 36px 24px; }
+
+      /* Contact form */
+      .form-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
