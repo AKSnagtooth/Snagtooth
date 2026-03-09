@@ -732,7 +732,7 @@
     }
 
     /* ============ PROCESS ============ */
-    #process { background: var(--charcoal); }
+    #process { background: var(--orange); }
 
     .process-steps {
       display: grid;
@@ -787,8 +787,31 @@
       .process-steps { grid-template-columns: 1fr; }
     }
 
+    /* PROCESS overrides for orange background */
+    #process .process-step { background: rgba(0,0,0,0.1); }
+    #process .step-number { color: rgba(0,0,0,0.1); }
+    #process .step-title { color: var(--black); }
+    #process .step-body { color: rgba(0,0,0,0.7); }
+    #process .process-coda { background: rgba(0,0,0,0.08); border-left-color: rgba(0,0,0,0.2); }
+    #process .process-coda p { color: rgba(0,0,0,0.7); }
+    #process .process-coda strong { color: var(--black); }
+    #process .section-headline { color: var(--black); }
+    #process .label { color: rgba(0,0,0,0.5); }
+    #process .text-orange { color: var(--black); }
+
     /* ============ TESTIMONIALS ============ */
-    #testimonials {}
+    #testimonials { background: linear-gradient(135deg, #FF5C00 0%, #E8683A 100%); }
+
+    /* TESTIMONIALS overrides for orange gradient background */
+    #testimonials .section-header { color: white; }
+    #testimonials .section-headline { color: white; }
+    #testimonials .label { color: rgba(255,255,255,0.6); }
+    #testimonials .testimonial { background: rgba(0,0,0,0.12); }
+    #testimonials .testimonial-quote { color: white; }
+    #testimonials .testimonial-quote::before { color: rgba(255,255,255,0.4); }
+    #testimonials .testimonial-author { border-top-color: rgba(255,255,255,0.15); }
+    #testimonials .testimonial-name { color: white; }
+    #testimonials .testimonial-title { color: rgba(255,255,255,0.65); }
 
     .testimonials-grid {
       display: grid;
