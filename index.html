@@ -389,6 +389,12 @@
       overflow: hidden;
     }
 
+    #why {
+      background: var(--orange);
+      position: relative;
+      overflow: hidden;
+    }
+
     .solution-headline {
       font-size: clamp(3rem, 6vw, 6rem);
       font-weight: 900;
@@ -455,6 +461,18 @@
     @media (max-width: 900px) {
       .diff-cards { grid-template-columns: 1fr; }
     }
+
+    /* WHY section overrides for orange background */
+    #why .solution-headline { color: var(--black); }
+    #why .solution-headline .accent { color: var(--black); text-decoration: underline; text-decoration-color: rgba(0,0,0,0.25); }
+    #why .solution-sub { color: rgba(0,0,0,0.7); }
+    #why .solution-body { color: rgba(0,0,0,0.7); }
+    #why .solution-body strong { color: var(--black); }
+    #why .diff-card { background: rgba(0,0,0,0.1); border-top-color: rgba(0,0,0,0.25); }
+    #why .diff-title { color: var(--black); }
+    #why .diff-card p { color: rgba(0,0,0,0.7); }
+    #why .diff-number { color: rgba(0,0,0,0.12); }
+    #why .label { color: rgba(0,0,0,0.5); }
 
     /* ============ CASE STUDIES ============ */
     #work { background: var(--charcoal); }
