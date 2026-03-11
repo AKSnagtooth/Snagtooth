@@ -222,7 +222,37 @@
       background: var(--black);
     }
 
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(232,226,204,0.055) 1.5px, transparent 1.5px);
+      background-size: 20px 20px;
+      z-index: 0;
+    }
+
     .hero-bg { display: none; }
+
+    .hero-watermark {
+      position: absolute;
+      bottom: -0.08em;
+      left: -0.03em;
+      font-family: var(--font-display);
+      font-size: clamp(10rem, 26vw, 30rem);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--bone);
+      opacity: 0;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-watermark.is-revealed { opacity: 0.04; }
 
     .hero-content { position: relative; z-index: 1; width: 100%; }
 
@@ -246,6 +276,34 @@
       margin-bottom: 0;
     }
 
+    /* HERO LINE REVEAL */
+    .hero-line-clip {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero-line-inner {
+      display: block;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity   700ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-line-inner.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-eyebrow {
+      opacity: 0;
+      transition: opacity 500ms ease;
+    }
+
+    .hero-eyebrow.is-revealed {
+      opacity: 1;
+    }
+
     /* HERO ORANGE SUB-SECTION */
     .hero-orange {
       background: var(--orange);
@@ -263,7 +321,7 @@
 
     .hero-orange-sub {
       font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
       font-style: italic;
       color: white;
       max-width: 700px;
@@ -278,6 +336,12 @@
       letter-spacing: 0.04em;
     }
 
+    .btn--hero {
+      padding: 20px 52px;
+      font-size: 1.05rem;
+      border-width: 2.5px;
+    }
+
     @media (max-width: 768px) {
       .hero-orange-inner { flex-direction: column; align-items: flex-start; }
       #hero { min-height: 70vh; padding-top: 100px; }
@@ -285,26 +349,49 @@
 
     /* ============ PARTNERS BAR ============ */
     #logos {
-      background: var(--orange);
+      background: var(--charcoal);
       padding: 64px 0;
       position: relative;
     }
 
     .partners-heading {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-style: italic;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.6);
-      text-transform: none;
-      letter-spacing: 0.08em;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bone);
+      text-align: center;
       margin-bottom: 32px;
+    }
+
+    .logos-marquee-outer {
+      overflow: hidden;
+      width: 100%;
     }
 
     .logos-row {
       display: flex;
       align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      gap: 56px;
+      width: max-content;
+      animation: logos-marquee 40s linear infinite;
+    }
+
+    .logos-row:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes logos-marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-33.333%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logos-row {
+        animation: none;
+        flex-wrap: wrap;
+      }
     }
 
     .logo-pill {
@@ -887,6 +974,7 @@
       margin-bottom: 8px;
     }
     .pricing-amount span { color: var(--orange); }
+    .pricing-extra { font-size: 0.85rem; color: var(--bone-dim); margin-top: 4px; }
 
     .pricing-range {
       font-size: 0.88rem;
@@ -1291,14 +1379,14 @@
   <!-- ============ HERO ============ -->
   <section id="hero">
     <div class="hero-bg"></div>
+    <div class="hero-watermark" aria-hidden="true">SNAGTOOTH</div>
     <div class="container">
       <div class="hero-content">
         <p class="hero-eyebrow">Creative Production + Paid Media</p>
         <h1 class="hero-headline">
-          Your Agency<br>
-          Makes Pretty Ads.<br>
-          We Make<br>
-          Ads That Sell.
+          We Exist<br>
+          to Make Ads<br>
+          That Don't Suck
         </h1>
       </div>
     </div>
@@ -1312,7 +1400,7 @@
           <p class="hero-orange-sub">One team, one roof — the person who builds your ad is the same one reading your data.</p>
           <p class="hero-orange-proof">Trusted by BOSS, Maui &amp; Sons, Young Nails, Converse, and the New York Islanders</p>
         </div>
-        <a href="#contact" class="btn btn--ghost" style="white-space:nowrap; border-color:white; color:white; flex-shrink:0;">Get Started →</a>
+        <a href="#contact" class="btn btn--ghost btn--hero" style="white-space:nowrap; border-color:white; color:white; flex-shrink:0;">Get Started →</a>
       </div>
     </div>
   </div>
@@ -1322,15 +1410,32 @@
   <section id="logos">
     <div class="container">
       <p class="partners-heading">Our Partners</p>
+    </div>
+    <div class="logos-marquee-outer">
       <div class="logos-row">
-        <span class="logo-pill">VANS</span>
-        <span class="logo-pill">Young Nails</span>
-        <span class="logo-pill">Converse</span>
-        <span class="logo-pill">Seldom Seen</span>
-        <span class="logo-pill">BOSS</span>
-        <span class="logo-pill">Univ. of Oregon</span>
-        <span class="logo-pill">Adidas</span>
-        <span class="logo-pill">Fucking Awesome</span>
+        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="NY Islanders" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="Adidas" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="Fucking Awesome" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/young%20nails.png" alt="Young Nails" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/BOSS-Logo-w%201.png" alt="BOSS" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/MauiandSons.png" alt="Maui and Sons" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="Literati" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <!-- duplicate set 2 -->
+        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <!-- duplicate set 3 -->
+        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
       </div>
     </div>
   </section>
@@ -1414,15 +1519,15 @@
             <p class="cs-problem">A respected legacy nonprofit on the brink — outdated brand, fragmented messaging, declining enrollment, no acquisition engine. We rebuilt everything: brand, website, content, paid media.</p>
             <div class="cs-metrics">
               <div class="cs-metric">
-                <span class="cs-metric-value">218</span>
+                <span class="cs-metric-value" data-counter>218</span>
                 <span class="cs-metric-label">Enrollments (2026 pace)</span>
               </div>
               <div class="cs-metric">
-                <span class="cs-metric-value">63</span>
+                <span class="cs-metric-value" data-counter>63</span>
                 <span class="cs-metric-label">Enrollments in 2024</span>
               </div>
               <div class="cs-metric">
-                <span class="cs-metric-value">$206</span>
+                <span class="cs-metric-value" data-counter>$206</span>
                 <span class="cs-metric-label">CAC on a $6,300 product</span>
               </div>
               <div class="cs-metric">
@@ -1434,7 +1539,7 @@
           </div>
           <div class="cs-visual">
             <div class="cs-stat-display">
-              <span class="cs-stat-big">246%</span>
+              <span class="cs-stat-big" data-counter>246%</span>
               <span class="cs-stat-label">Enrollment growth YoY</span>
             </div>
           </div>
@@ -1448,15 +1553,15 @@
             <p class="cs-problem">Sell 1,000 shoes in 30 days. Full PDP, 6–12 ads covering the entire funnel, targeted streetwear and skate-adjacent audiences with drip-fed storytelling.</p>
             <div class="cs-metrics">
               <div class="cs-metric">
-                <span class="cs-metric-value">119×</span>
+                <span class="cs-metric-value" data-counter>119×</span>
                 <span class="cs-metric-label">ROAS in first 48 hours</span>
               </div>
               <div class="cs-metric">
-                <span class="cs-metric-value">$7.95</span>
+                <span class="cs-metric-value" data-counter>$7.95</span>
                 <span class="cs-metric-label">Cost per purchase</span>
               </div>
               <div class="cs-metric">
-                <span class="cs-metric-value">28.78×</span>
+                <span class="cs-metric-value" data-counter>28.78×</span>
                 <span class="cs-metric-label">Average ROAS over 30 days</span>
               </div>
               <div class="cs-metric">
@@ -1468,7 +1573,7 @@
           </div>
           <div class="cs-visual">
             <div class="cs-stat-display">
-              <span class="cs-stat-big">119×</span>
+              <span class="cs-stat-big" data-counter>119×</span>
               <span class="cs-stat-label">ROAS — first 48 hours</span>
             </div>
           </div>
@@ -1482,19 +1587,19 @@
             <p class="cs-problem">Build a political channel from zero. Reach people politically homeless — stuck in the middle — and build something they'd actually want to join. Then use paid to make it inevitable.</p>
             <div class="cs-metrics">
               <div class="cs-metric">
-                <span class="cs-metric-value">90K</span>
+                <span class="cs-metric-value" data-counter>90K</span>
                 <span class="cs-metric-label">Followers from zero</span>
               </div>
               <div class="cs-metric">
-                <span class="cs-metric-value">$0.41</span>
+                <span class="cs-metric-value" data-counter>$0.41</span>
                 <span class="cs-metric-label">Cost per follow</span>
               </div>
               <div class="cs-metric">
-                <span class="cs-metric-value">93rd</span>
+                <span class="cs-metric-value" data-counter>93rd</span>
                 <span class="cs-metric-label">Percentile growth on Meta</span>
               </div>
               <div class="cs-metric">
-                <span class="cs-metric-value">836/day</span>
+                <span class="cs-metric-value" data-counter>836/day</span>
                 <span class="cs-metric-label">Current follower velocity</span>
               </div>
             </div>
@@ -1502,7 +1607,7 @@
           </div>
           <div class="cs-visual">
             <div class="cs-stat-display">
-              <span class="cs-stat-big">$0.41</span>
+              <span class="cs-stat-big" data-counter>$0.41</span>
               <span class="cs-stat-label">Cost per follower</span>
             </div>
           </div>
@@ -1635,7 +1740,8 @@
       </div>
 
       <div class="pricing-card reveal">
-        <h3 class="pricing-amount">Retainers from <span>$2,000/mo</span></h3>
+        <h3 class="pricing-amount">Retainers from <span>$3,000/mo</span></h3>
+        <p class="pricing-extra">+10% of Ad Spend for $100K or less</p>
         <p class="pricing-range">Most engagements run $3,000–$6,000/month depending on scope and ad spend.</p>
         <div class="pricing-includes">
           <p class="pricing-includes-title">What's included</p>
@@ -1822,6 +1928,147 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
     reveals.forEach(el => observer.observe(el));
+
+    // HERO LINE REVEAL
+    (function () {
+      var headline  = document.querySelector('.hero-headline');
+      var eyebrow   = document.querySelector('.hero-eyebrow');
+      var watermark = document.querySelector('.hero-watermark');
+      if (!headline) return;
+
+      var parts = headline.innerHTML.split(/<br\s*\/?>/i);
+      headline.innerHTML = parts.map(function (part) {
+        var text = part.trim();
+        if (!text) return '';
+        return '<div class="hero-line-clip"><div class="hero-line-inner">' + text + '</div></div>';
+      }).filter(Boolean).join('');
+
+      var lines    = headline.querySelectorAll('.hero-line-inner');
+      var STAGGER  = 120;
+      var DURATION = 700;
+      var START    = 300;
+
+      setTimeout(function () {
+        if (watermark) watermark.classList.add('is-revealed');
+
+        lines.forEach(function (line, i) {
+          setTimeout(function () {
+            line.classList.add('is-revealed');
+          }, i * STAGGER);
+        });
+
+        setTimeout(function () {
+          if (eyebrow) eyebrow.classList.add('is-revealed');
+        }, (lines.length - 1) * STAGGER + DURATION);
+      }, START);
+    })();
+
+    // HERO CURSOR PARALLAX
+    (function () {
+      if (!window.matchMedia('(min-width: 768px)').matches) return;
+      if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+      var hero      = document.getElementById('hero');
+      var watermark = hero && hero.querySelector('.hero-watermark');
+      var headline  = hero && hero.querySelector('.hero-headline');
+      if (!hero || !watermark || !headline) return;
+
+      var LERP  = 0.08;
+      var W_MAX = 20;
+      var H_MAX = 8;
+
+      var tWX = 0, tWY = 0;
+      var tHX = 0, tHY = 0;
+      var cWX = 0, cWY = 0;
+      var cHX = 0, cHY = 0;
+      var rafId = null;
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function tick() {
+        cWX = lerp(cWX, tWX, LERP);
+        cWY = lerp(cWY, tWY, LERP);
+        cHX = lerp(cHX, tHX, LERP);
+        cHY = lerp(cHY, tHY, LERP);
+
+        watermark.style.transform = 'translateX(' + cWX + 'px) translateY(' + cWY + 'px)';
+        headline.style.transform  = 'translateX(' + cHX + 'px) translateY(' + cHY + 'px)';
+
+        var dist = Math.abs(cWX - tWX) + Math.abs(cWY - tWY)
+                 + Math.abs(cHX - tHX) + Math.abs(cHY - tHY);
+        rafId = dist > 0.05 ? requestAnimationFrame(tick) : null;
+      }
+
+      function startRaf() {
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+
+      hero.addEventListener('mousemove', function (e) {
+        var rect = hero.getBoundingClientRect();
+        var nx = ((e.clientX - rect.left)  / rect.width  - 0.5) * 2;
+        var ny = ((e.clientY - rect.top)   / rect.height - 0.5) * 2;
+        tWX = -nx * W_MAX;
+        tWY = -ny * W_MAX;
+        tHX =  nx * H_MAX;
+        tHY =  ny * H_MAX;
+        startRaf();
+      });
+
+      hero.addEventListener('mouseleave', function () {
+        tWX = tWY = tHX = tHY = 0;
+        startRaf();
+      });
+    })();
+
+    // ANIMATED COUNTERS
+    (function () {
+      function parseCounter(text) {
+        var m = text.match(/^(\$?)(\d+(?:\.\d+)?)(.*)/);
+        if (!m) return null;
+        return {
+          prefix:   m[1],
+          target:   parseFloat(m[2]),
+          suffix:   m[3],
+          decimals: m[2].indexOf('.') !== -1 ? m[2].split('.')[1].length : 0,
+          original: text
+        };
+      }
+
+      function easeOut(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function animateCounter(el, parsed) {
+        var duration = parsed.target < 1 ? 900 : 1800;
+        var start = performance.now();
+        function step(now) {
+          var elapsed = now - start;
+          var t     = Math.min(elapsed / duration, 1);
+          var value = easeOut(t) * parsed.target;
+          el.textContent = parsed.prefix + value.toFixed(parsed.decimals) + parsed.suffix;
+          if (t < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = parsed.original;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      var counterEls = document.querySelectorAll('[data-counter]');
+      var counterObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var el     = entry.target;
+            var parsed = parseCounter(el.textContent.trim());
+            if (parsed) animateCounter(el, parsed);
+            counterObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      counterEls.forEach(function (el) { counterObserver.observe(el); });
+    })();
 
     // FORM STEPS
     function goToStep2() {
