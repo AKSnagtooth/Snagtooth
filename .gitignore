@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Raw video source files (large binaries — use compressed/ only)
+assets/Video/BOSS_REELS/
+assets/Video/FAxConverse/
+assets/Video/Maui_And_Sons/
+assets/Video/Middle_Calling/
+
+# Nested repo
+Snagtooth/
+
+# Design tooling
+ui-ux-pro-max-skill-main/
