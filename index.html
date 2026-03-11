@@ -24,6 +24,14 @@
       --orange-hot:     #FF6D1A;
       --orange-dim:     #7A2C00;
       --gold:           #C9A84C;
+      --gold-dim:       rgba(201,168,76,0.15);
+      --gold-glow:      rgba(201,168,76,0.06);
+      --bone-body:      var(--bone-body);
+      --on-orange:      rgba(0,0,0,0.8);
+      --on-orange-dim:  rgba(0,0,0,0.7);
+      --on-orange-ghost:rgba(0,0,0,0.25);
+      --on-orange-card: rgba(0,0,0,0.12);
+      --on-orange-border:rgba(0,0,0,0.15);
       --line:           rgba(232,226,204,0.08);
       --line-hot:       rgba(255,92,0,0.25);
       --font-display:   'Anton', sans-serif;
@@ -454,13 +462,27 @@
     .logo-pill:hover { opacity: 1; }
 
     /* ============ PROBLEM ============ */
-    #problem { background: var(--charcoal); }
+    #problem { background: var(--charcoal); position: relative; }
+
+    #problem::before {
+      content: '';
+      position: absolute;
+      top: 80px;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
     .problem-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: start;
+      position: relative;
+      z-index: 1;
     }
 
     .problem-headline {
@@ -468,50 +490,102 @@
       font-weight: 800;
       text-transform: uppercase;
       line-height: 0.95;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
+
+    .problem-headline .gold-accent { color: var(--bone); }
 
     .problem-body {
       font-size: 17px;
-      color: rgba(232,226,204,0.85);
+      color: rgba(232,226,204,0.75);
       line-height: 1.75;
       margin-bottom: 20px;
-      max-width: 640px;
+      max-width: 480px;
     }
     .problem-body + .problem-body { margin-top: 0; }
+
+    .problem-body.hook {
+      color: var(--bone);
+      font-weight: 600;
+      font-size: 18px;
+      margin-top: 8px;
+    }
 
     .pain-cards {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 0;
     }
 
+    .pain-card + .pain-card { border-top: 1px solid var(--line); }
+
     .pain-card {
-      padding: 28px 32px;
+      padding: 32px 36px;
       background: var(--charcoal-mid);
       border-left: 3px solid var(--orange-dim);
-      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
+    .pain-card.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .pain-card:nth-child(1) { transition-delay: 0.2s; }
+    .pain-card:nth-child(2) { transition-delay: 0.35s; }
+    .pain-card:nth-child(3) { transition-delay: 0.5s; }
+
+    .pain-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(255,92,0,0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
     .pain-card:hover {
       border-color: var(--orange);
       background: var(--charcoal-light);
+    }
+    .pain-card:hover::after { opacity: 1; }
+
+    .pain-card-number {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .pain-card-title {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--bone);
+      position: relative;
+      z-index: 1;
     }
 
     .pain-card p {
       font-size: 16px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       line-height: 1.75;
+      position: relative;
+      z-index: 1;
     }
+
+    .metric { color: var(--gold); font-weight: 600; }
 
     @media (max-width: 900px) {
       .problem-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -540,7 +614,7 @@
 
     .solution-sub {
       font-size: 17px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       max-width: 640px;
       line-height: 1.75;
       margin-bottom: 60px;
@@ -548,7 +622,7 @@
 
     .solution-body {
       font-size: 17px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       max-width: 640px;
       line-height: 1.8;
       margin-bottom: 60px;
@@ -588,7 +662,7 @@
 
     .diff-card p {
       font-size: 16px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       line-height: 1.75;
     }
 
@@ -598,15 +672,15 @@
 
     /* WHY section overrides for orange background */
     #why .solution-headline { color: var(--black); }
-    #why .solution-headline .accent { color: var(--black); text-decoration: underline; text-decoration-color: rgba(0,0,0,0.25); }
-    #why .solution-sub { color: rgba(0,0,0,0.8); }
-    #why .solution-body { color: rgba(0,0,0,0.8); }
+    #why .solution-headline .accent { color: var(--black); text-decoration: underline; text-decoration-color: var(--on-orange-ghost); }
+    #why .solution-sub { color: var(--on-orange); }
+    #why .solution-body { color: var(--on-orange); }
     #why .solution-body strong { color: var(--black); }
-    #why .diff-card { background: rgba(0,0,0,0.12); border-top: 2px solid rgba(0,0,0,0.15); }
+    #why .diff-card { background: var(--on-orange-card); border-top: 2px solid var(--on-orange-border); }
     #why .diff-title { color: var(--black); }
     #why .diff-card p { color: var(--black); }
-    #why .diff-number { color: rgba(0,0,0,0.25); }
-    #why .label { color: rgba(0,0,0,0.7); }
+    #why .diff-number { color: var(--on-orange-ghost); }
+    #why .label { color: var(--on-orange-dim); }
 
     /* ============ CASE STUDIES ============ */
     #work { background: var(--charcoal); }
@@ -676,7 +750,7 @@
 
     .cs-problem {
       font-size: 17px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       line-height: 1.7;
       margin-bottom: 28px;
       max-width: 640px;
@@ -712,7 +786,7 @@
 
     .cs-quote {
       font-size: 17px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       font-style: italic;
       line-height: 1.7;
       padding-left: 16px;
@@ -785,7 +859,7 @@
 
     .service-body {
       font-size: 17px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       line-height: 1.75;
       margin-bottom: 32px;
       max-width: 640px;
@@ -799,7 +873,7 @@
     }
     .service-list li {
       font-size: 16px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       display: flex;
       align-items: flex-start;
       gap: 12px;
@@ -817,7 +891,7 @@
       padding: 20px 24px;
       border: 1px solid var(--line);
       font-size: 16px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       font-style: italic;
       line-height: 1.75;
     }
@@ -851,10 +925,10 @@
 
     .not-included-close {
       font-size: 17px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       line-height: 1.75;
     }
-    .not-included-close strong { color: rgba(232,226,204,0.85); }
+    .not-included-close strong { color: var(--bone-body); }
 
     @media (max-width: 900px) {
       .services-grid { grid-template-columns: 1fr; }
@@ -897,7 +971,7 @@
 
     .step-body {
       font-size: 16px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       line-height: 1.75;
     }
 
@@ -909,7 +983,7 @@
     }
     .process-coda p {
       font-size: 17px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       line-height: 1.7;
     }
     .process-coda strong { color: var(--bone); }
@@ -919,15 +993,15 @@
     }
 
     /* PROCESS overrides for orange background */
-    #process .process-step { background: rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.15); }
-    #process .step-number { color: rgba(0,0,0,0.25); }
+    #process .process-step { background: var(--on-orange-card); border: 1px solid var(--on-orange-border); }
+    #process .step-number { color: var(--on-orange-ghost); }
     #process .step-title { color: var(--black); }
     #process .step-body { color: var(--black); }
     #process .process-coda { background: rgba(0,0,0,0.08); border-left-color: rgba(0,0,0,0.2); }
-    #process .process-coda p { color: rgba(0,0,0,0.8); }
+    #process .process-coda p { color: var(--on-orange); }
     #process .process-coda strong { color: var(--black); }
     #process .section-headline { color: var(--black); }
-    #process .label { color: rgba(0,0,0,0.7); }
+    #process .label { color: var(--on-orange-dim); }
     #process .text-orange { color: var(--black); }
 
     /* ============ TESTIMONIALS ============ */
@@ -937,7 +1011,7 @@
     #testimonials .section-headline { color: var(--bone); }
     #testimonials .label { color: var(--orange); }
     #testimonials .testimonial { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); }
-    #testimonials .testimonial-quote { color: rgba(232,226,204,0.85); }
+    #testimonials .testimonial-quote { color: var(--bone-body); }
     #testimonials .testimonial-quote::before { color: var(--orange); }
     #testimonials .testimonial-author { border-top-color: rgba(232,226,204,0.12); }
     #testimonials .testimonial-name { color: var(--orange); }
@@ -1045,7 +1119,7 @@
     }
     .pricing-includes li {
       font-size: 16px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       display: flex;
       align-items: flex-start;
       gap: 12px;
@@ -1059,7 +1133,7 @@
 
     .pricing-note {
       font-size: 16px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       line-height: 1.75;
       padding: 20px 24px;
       border: 1px solid var(--line);
@@ -1091,7 +1165,7 @@
 
     .contact-left p {
       font-size: 17px;
-      color: rgba(232,226,204,0.85);
+      color: var(--bone-body);
       line-height: 1.75;
       margin-bottom: 40px;
     }
@@ -1526,21 +1600,24 @@
           <h2 class="problem-headline">Your Creative Team and Your Media Buyer Have Never Spoken.</h2>
           <div class="divider"></div>
           <p class="problem-body">You're paying one team to make ads. Another one — or the same agency's "other department" — to run them. The brief gets lost in translation. The creative looks great in a deck and dies on day three in the account.</p>
-          <p class="problem-body">Meanwhile, your CAC is climbing. Your ROAS is sliding. And your agency just sent you a monthly report full of impressions and reach instead of the numbers you actually care about.</p>
-          <p class="problem-body" style="color:var(--bone); font-weight:500;">Sound familiar?</p>
+          <p class="problem-body">Meanwhile, your <span class="metric">CAC</span> is climbing. Your <span class="metric">ROAS</span> is sliding. And your agency just sent you a monthly report full of impressions and reach instead of the numbers you actually care about.</p>
+          <p class="problem-body hook">Sound familiar?</p>
         </div>
-        <div class="pain-cards reveal reveal-delay-2">
+        <div class="pain-cards">
           <div class="pain-card">
+            <p class="pain-card-number">01</p>
             <p class="pain-card-title">Creative That Doesn't Convert</p>
-            <p>Beautiful ads. Terrible CAC. Your agency's creative team hasn't looked at your Ads Manager once.</p>
+            <p>Beautiful ads. Terrible <span class="metric">CAC</span>. Your agency's creative team hasn't looked at your Ads Manager once.</p>
           </div>
           <div class="pain-card">
+            <p class="pain-card-number">02</p>
             <p class="pain-card-title">Media Buyers Flying Blind</p>
             <p>Your media buyer is optimizing in a vacuum. They didn't make the creative. They can't change the creative. So they adjust the targeting and hope.</p>
           </div>
           <div class="pain-card">
+            <p class="pain-card-number">03</p>
             <p class="pain-card-title">Reports That Say Nothing</p>
-            <p>Reach. Impressions. Engagement rate. None of these pay your rent. You want CAC, ROAS, and revenue. You keep getting slideshows.</p>
+            <p>Reach. Impressions. Engagement rate. None of these pay your rent. You want <span class="metric">CAC</span>, <span class="metric">ROAS</span>, and <span class="metric">revenue</span>. You keep getting slideshows.</p>
           </div>
         </div>
       </div>
@@ -2038,7 +2115,7 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-    reveals.forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal, .pain-card').forEach(el => observer.observe(el));
 
     // HERO LINE REVEAL
     (function () {
