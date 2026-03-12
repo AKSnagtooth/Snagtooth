@@ -1339,23 +1339,33 @@
     /* FORM STYLES */
     .form-container { position: relative; }
 
-    .form-step {
-      display: none;
-    }
-    .form-step.active { display: block; }
-
-    .form-step-indicator {
+    /* Progress bars */
+    .form-progress {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 36px;
     }
-    .step-dot {
-      width: 24px;
-      height: 2px;
-      background: var(--line);
+    .progress-bar {
+      height: 3px;
+      width: 40px;
+      border-radius: 0;
+      background: rgba(255,255,255,0.15);
       transition: background 0.3s;
     }
-    .step-dot.active { background: var(--orange); }
+    .progress-bar.active { background: var(--orange); }
+    .progress-bar.completed { background: rgba(255,103,0,0.4); }
+
+    /* Step visibility + fade */
+    .form-step {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .form-step.active {
+      display: block;
+      opacity: 0;
+    }
+    .form-step.visible { opacity: 1; }
 
     .form-group { margin-bottom: 20px; }
 
@@ -1383,12 +1393,11 @@
       outline: none;
       transition: border-color 0.2s;
       appearance: none;
+      border-radius: 0;
     }
     .form-input:focus,
     .form-select:focus,
-    .form-textarea:focus {
-      border-color: var(--orange);
-    }
+    .form-textarea:focus { border-color: var(--orange); }
     .form-input::placeholder,
     .form-textarea::placeholder { color: rgba(240,237,230,0.25); }
 
@@ -1401,86 +1410,146 @@
     }
     .form-select option { background: var(--charcoal); }
 
-    .form-textarea { min-height: 100px; resize: vertical; }
+    .form-textarea { min-height: 80px; resize: vertical; }
 
-    .radio-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .radio-option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 18px;
-      background: var(--charcoal);
-      border: 1px solid var(--line);
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
-    .radio-option:hover { border-color: var(--orange-dim); }
-    .radio-option input { display: none; }
-    .radio-option.selected { border-color: var(--orange); }
-
-    .radio-dot {
-      width: 14px;
-      height: 14px;
-      border: 1px solid var(--bone-dim);
-      border-radius: 50%;
-      flex-shrink: 0;
-      position: relative;
-      transition: border-color 0.2s;
-    }
-    .radio-option.selected .radio-dot {
-      border-color: var(--orange);
-    }
-    .radio-option.selected .radio-dot::after {
-      content: '';
-      position: absolute;
-      inset: 3px;
-      background: var(--orange);
-      border-radius: 50%;
-    }
-
-    .radio-label {
-      font-size: 1rem;
-      color: var(--bone-dim);
-    }
-    .radio-option.selected .radio-label { color: var(--bone); }
-
-    .form-submit-row {
+    /* Continue / Back nav */
+    .form-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-top: 28px;
-      flex-wrap: wrap;
       gap: 16px;
     }
 
-    /* CONFIRMATION */
-    .form-confirmation { display: none; }
-    .form-confirmation.show { display: block; }
-    .form-confirmation h3 {
-      font-size: 2.4rem;
-      font-weight: 900;
+    .form-btn-continue {
+      display: block;
+      width: 100%;
+      background: var(--orange);
+      color: var(--black);
+      font-family: var(--font-display);
+      font-size: 1rem;
       text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .form-btn-continue:hover { background: var(--orange-hot); }
+
+    .form-btn-back {
+      background: none;
+      border: none;
+      color: rgba(232,226,204,0.5);
+      font-family: var(--font-body);
+      font-size: 13px;
+      cursor: pointer;
+      padding: 0;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .form-btn-back:hover { color: var(--bone); }
+
+    /* Outcome screens */
+    .form-outcome { display: none; opacity: 0; transition: opacity 0.2s ease; }
+    .form-outcome.active { display: block; }
+    .form-outcome.visible { opacity: 1; }
+
+    .outcome-label {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
       color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    .outcome-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      text-transform: uppercase;
+      color: var(--bone);
+      line-height: 1.05;
       margin-bottom: 16px;
     }
-    .form-confirmation p {
-      font-size: 0.95rem;
+
+    .outcome-body {
+      font-family: var(--font-body);
+      font-size: 15px;
       color: var(--bone-dim);
       line-height: 1.75;
       margin-bottom: 28px;
     }
-    .calendly-link {
-      color: var(--bone);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      transition: color 0.2s;
+
+    .outcome-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: var(--orange);
+      color: var(--black);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 16px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s;
+      box-sizing: border-box;
     }
-    .calendly-link:hover { color: var(--orange); }
+    .outcome-cta:hover { background: var(--orange-hot); color: var(--black); }
+
+    .outcome-fine {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--bone-dim);
+      margin-top: 14px;
+    }
+
+    /* Waitlist email row */
+    .waitlist-row {
+      display: flex;
+      gap: 0;
+      margin-bottom: 0;
+    }
+    .waitlist-input {
+      flex: 1;
+      background: var(--charcoal);
+      border: 1px solid var(--line);
+      border-right: none;
+      color: var(--bone);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 14px 18px;
+      outline: none;
+      border-radius: 0;
+      min-width: 0;
+    }
+    .waitlist-input:focus { border-color: var(--orange); }
+    .waitlist-input::placeholder { color: rgba(240,237,230,0.25); }
+    .waitlist-btn {
+      background: var(--orange);
+      color: var(--black);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 0 2px 2px 0;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .waitlist-btn:hover { background: var(--orange-hot); }
+    .waitlist-success {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--bone);
+      padding: 14px 0;
+    }
 
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -2167,90 +2236,123 @@
         </div>
 
         <div class="form-container reveal reveal-delay-1">
-          <!-- STEP INDICATORS -->
-          <div class="form-step-indicator" id="stepIndicator">
-            <div class="step-dot active" id="dot1"></div>
-            <div class="step-dot" id="dot2"></div>
+
+          <!-- PROGRESS BARS -->
+          <div class="form-progress" id="formProgress">
+            <div class="progress-bar active" id="bar1"></div>
+            <div class="progress-bar" id="bar2"></div>
+            <div class="progress-bar" id="bar3"></div>
           </div>
 
-          <!-- STEP 1 -->
+          <!-- STEP 1 — Who are you? -->
           <div class="form-step active" id="step1">
             <div class="form-group">
-              <label class="form-label" for="firstName">First Name *</label>
-              <input class="form-input" type="text" id="firstName" placeholder="Alex" required />
+              <label class="form-label" for="firstName">First Name</label>
+              <input class="form-input" type="text" id="firstName" placeholder="Alex" />
             </div>
             <div class="form-group">
-              <label class="form-label" for="email">Email *</label>
-              <input class="form-input" type="email" id="email" placeholder="alex@yourbrand.com" required />
+              <label class="form-label" for="email">Email</label>
+              <input class="form-input" type="email" id="email" placeholder="alex@yourbrand.com" />
             </div>
             <div class="form-group">
-              <label class="form-label" for="brandName">Brand Name *</label>
-              <input class="form-input" type="text" id="brandName" placeholder="Your Brand" required />
+              <label class="form-label" for="brandName">Brand Name</label>
+              <input class="form-input" type="text" id="brandName" placeholder="Your Brand" />
             </div>
             <div class="form-group">
-              <label class="form-label" for="website">Website URL *</label>
-              <input class="form-input" type="url" id="website" placeholder="https://yourbrand.com" required />
+              <label class="form-label" for="website">Website URL</label>
+              <input class="form-input" type="url" id="website" placeholder="https://yourbrand.com" />
             </div>
-            <div class="form-submit-row">
-              <button class="btn btn--primary" onclick="goToStep2()">Continue →</button>
-              <span style="font-size:0.78rem; color:var(--bone-dim);">Step 1 of 2</span>
+            <div class="form-nav">
+              <button class="form-btn-continue" onclick="qfNext(1)">CONTINUE →</button>
             </div>
           </div>
 
-          <!-- STEP 2 -->
+          <!-- STEP 2 — Your business -->
           <div class="form-step" id="step2">
             <div class="form-group">
-              <label class="form-label">Monthly Ad Budget</label>
-              <select class="form-select" id="adBudget">
+              <label class="form-label" for="revenue">Monthly Revenue / GMV</label>
+              <select class="form-select" id="revenue">
                 <option value="">Select your range</option>
-                <option>Not running ads yet</option>
-                <option>Under $5,000</option>
-                <option>$5,000 – $15,000</option>
-                <option>$15,000 – $50,000</option>
-                <option>$50,000+</option>
+                <option>Under $50K/mo</option>
+                <option>$50K–$250K/mo</option>
+                <option>$250K–$1M/mo</option>
+                <option>$1M+/mo</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">Biggest Challenge</label>
-              <div class="radio-group" id="challengeGroup">
-                <div class="radio-option" onclick="selectRadio(this)">
-                  <input type="radio" name="challenge" value="creative" />
-                  <div class="radio-dot"></div>
-                  <span class="radio-label">Creative that actually converts</span>
-                </div>
-                <div class="radio-option" onclick="selectRadio(this)">
-                  <input type="radio" name="challenge" value="media" />
-                  <div class="radio-dot"></div>
-                  <span class="radio-label">Scaling paid media profitably</span>
-                </div>
-                <div class="radio-option" onclick="selectRadio(this)">
-                  <input type="radio" name="challenge" value="both" />
-                  <div class="radio-dot"></div>
-                  <span class="radio-label">Both — need to rebuild from scratch</span>
-                </div>
-                <div class="radio-option" onclick="selectRadio(this)">
-                  <input type="radio" name="challenge" value="zero" />
-                  <div class="radio-dot"></div>
-                  <span class="radio-label">Starting from zero</span>
-                </div>
-              </div>
+              <label class="form-label" for="adSpend">Current monthly ad spend</label>
+              <select class="form-select" id="adSpend">
+                <option value="">Select your range</option>
+                <option>Under $3K/mo</option>
+                <option>$3K–$10K/mo</option>
+                <option>$10K–$50K/mo</option>
+                <option>$50K+/mo</option>
+              </select>
             </div>
             <div class="form-group">
-              <label class="form-label" for="notes">Anything else? <span style="opacity:0.5;">(optional)</span></label>
-              <textarea class="form-textarea" id="notes" placeholder="What's the context?"></textarea>
+              <label class="form-label" for="platform">Primary platform</label>
+              <select class="form-select" id="platform">
+                <option value="">Select platform</option>
+                <option>Meta Ads</option>
+                <option>Google Ads</option>
+                <option>Both</option>
+                <option>Neither — just getting started</option>
+              </select>
             </div>
-            <div class="form-submit-row">
-              <button class="btn btn--primary" onclick="submitForm()">Submit →</button>
-              <button onclick="goToStep1()" style="background:none;border:none;color:var(--bone-dim);cursor:pointer;font-size:0.85rem;text-decoration:underline;">← Back</button>
+            <div class="form-nav">
+              <button class="form-btn-back" onclick="qfBack(2)">← Back</button>
+              <button class="form-btn-continue" style="width:auto;flex:1;margin-left:16px;" onclick="qfNext(2)">CONTINUE →</button>
             </div>
           </div>
 
-          <!-- CONFIRMATION -->
-          <div class="form-confirmation" id="formConfirmation">
-            <h3>Nice.</h3>
-            <p>We've got your info. Expect to hear from us within 24 hours.</p>
-            <p>Want to skip the wait? <a href="#" class="calendly-link">Book a call directly →</a></p>
+          <!-- STEP 3 — Your situation -->
+          <div class="form-step" id="step3">
+            <div class="form-group">
+              <label class="form-label" for="currentSetup">Current setup</label>
+              <select class="form-select" id="currentSetup">
+                <option value="">Select your setup</option>
+                <option>In-house team</option>
+                <option>Working with an agency</option>
+                <option>Freelancer / contractor</option>
+                <option>Flying solo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="biggestProblem">Biggest paid media problem right now</label>
+              <textarea class="form-textarea" id="biggestProblem" placeholder="High CAC, bad creative, platform issues — what's the core problem?"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="triedBefore">What have you tried that hasn't worked?</label>
+              <textarea class="form-textarea" id="triedBefore" placeholder="Agencies, in-house teams, specific strategies..."></textarea>
+            </div>
+            <div class="form-nav">
+              <button class="form-btn-back" onclick="qfBack(3)">← Back</button>
+              <button class="form-btn-continue" style="width:auto;flex:1;margin-left:16px;" onclick="qfSubmit()">CONTINUE →</button>
+            </div>
           </div>
+
+          <!-- OUTCOME: QUALIFIED -->
+          <div class="form-outcome" id="outcomeQualified">
+            <p class="outcome-label">You're a fit.</p>
+            <h3 class="outcome-headline">Let's look at<br>your account.</h3>
+            <p class="outcome-body">We reviewed what you shared. Next step is a 30-minute call where we'll audit your current setup and tell you exactly what we'd do differently.</p>
+            <a href="CALENDLY_LINK_HERE" target="_blank" rel="noopener" class="outcome-cta">SCHEDULE YOUR CALL <span>→</span></a>
+            <p class="outcome-fine">No commitment. If we're not the right fit, we'll tell you.</p>
+          </div>
+
+          <!-- OUTCOME: WAITLIST -->
+          <div class="form-outcome" id="outcomeWaitlist">
+            <p class="outcome-label">Not quite yet.</p>
+            <h3 class="outcome-headline">We're built for brands<br>already in market.</h3>
+            <p class="outcome-body">We work best with brands that are already running paid ads with a real budget behind them. If that's not you yet — it will be. Drop your email and we'll reach out when the timing makes sense.</p>
+            <div id="waitlistForm">
+              <div class="waitlist-row">
+                <input class="waitlist-input" type="email" id="waitlistEmail" placeholder="your@email.com" />
+                <button class="waitlist-btn" onclick="qfWaitlistSubmit()">NOTIFY ME →</button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -2453,40 +2555,130 @@
       counterEls.forEach(function (el) { counterObserver.observe(el); });
     })();
 
-    // FORM STEPS
-    function goToStep2() {
-      const firstName = document.getElementById('firstName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const brandName = document.getElementById('brandName').value.trim();
-      const website = document.getElementById('website').value.trim();
-      if (!firstName || !email || !brandName || !website) {
-        alert('Please fill in all required fields.');
-        return;
+    // QUALIFYING FORM
+    (function () {
+      var currentStep = 1;
+      var totalSteps = 3;
+
+      function showStep(n) {
+        // Hide all steps
+        for (var i = 1; i <= totalSteps; i++) {
+          var el = document.getElementById('step' + i);
+          if (el) {
+            el.classList.remove('active', 'visible');
+          }
+        }
+        // Show target step with fade
+        var target = document.getElementById('step' + n);
+        if (!target) return;
+        target.classList.add('active');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            target.classList.add('visible');
+          });
+        });
+        currentStep = n;
+        updateBars(n);
       }
-      document.getElementById('step1').classList.remove('active');
-      document.getElementById('step2').classList.add('active');
-      document.getElementById('dot1').classList.remove('active');
-      document.getElementById('dot2').classList.add('active');
-    }
 
-    function goToStep1() {
-      document.getElementById('step2').classList.remove('active');
-      document.getElementById('step1').classList.add('active');
-      document.getElementById('dot2').classList.remove('active');
-      document.getElementById('dot1').classList.add('active');
-    }
+      function updateBars(step) {
+        for (var i = 1; i <= totalSteps; i++) {
+          var bar = document.getElementById('bar' + i);
+          if (!bar) continue;
+          bar.classList.remove('active', 'completed');
+          if (i < step) bar.classList.add('completed');
+          else if (i === step) bar.classList.add('active');
+        }
+      }
 
-    function selectRadio(el) {
-      document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
-      el.classList.add('selected');
-      el.querySelector('input').checked = true;
-    }
+      function showOutcome(id) {
+        // Hide progress + all steps
+        var progress = document.getElementById('formProgress');
+        if (progress) progress.style.display = 'none';
+        for (var i = 1; i <= totalSteps; i++) {
+          var el = document.getElementById('step' + i);
+          if (el) el.classList.remove('active', 'visible');
+        }
+        // Show outcome with fade
+        var outcome = document.getElementById(id);
+        if (!outcome) return;
+        outcome.classList.add('active');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            outcome.classList.add('visible');
+          });
+        });
+      }
 
-    function submitForm() {
-      document.getElementById('step2').classList.remove('active');
-      document.getElementById('stepIndicator').style.display = 'none';
-      document.getElementById('formConfirmation').classList.add('show');
-    }
+      // Init: fade in step 1
+      (function () {
+        var s1 = document.getElementById('step1');
+        if (!s1) return;
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            s1.classList.add('visible');
+          });
+        });
+      })();
+
+      window.qfNext = function (step) {
+        if (step === 1) {
+          var firstName = document.getElementById('firstName').value.trim();
+          var email     = document.getElementById('email').value.trim();
+          var brandName = document.getElementById('brandName').value.trim();
+          var website   = document.getElementById('website').value.trim();
+          if (!firstName || !email || !brandName || !website) {
+            alert('Please fill in all fields before continuing.');
+            return;
+          }
+          showStep(2);
+        } else if (step === 2) {
+          var revenue  = document.getElementById('revenue').value;
+          var adSpend  = document.getElementById('adSpend').value;
+          var platform = document.getElementById('platform').value;
+          if (!revenue || !adSpend || !platform) {
+            alert('Please complete all fields before continuing.');
+            return;
+          }
+          showStep(3);
+        }
+      };
+
+      window.qfBack = function (step) {
+        showStep(step - 1);
+      };
+
+      window.qfSubmit = function () {
+        var adSpend  = document.getElementById('adSpend').value;
+        var platform = document.getElementById('platform').value;
+        var qualified = adSpend !== 'Under $3K/mo' && platform !== 'Neither — just getting started';
+        showOutcome(qualified ? 'outcomeQualified' : 'outcomeWaitlist');
+      };
+
+      window.qfWaitlistSubmit = function () {
+        var emailEl = document.getElementById('waitlistEmail');
+        var email   = emailEl ? emailEl.value.trim() : '';
+        if (!email) { alert('Please enter your email.'); return; }
+
+        fetch('https://formspree.io/f/PLACEHOLDER', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email: email, type: 'waitlist' })
+        })
+        .then(function (r) {
+          var container = document.getElementById('waitlistForm');
+          if (container) {
+            container.innerHTML = '<p class="waitlist-success">Got it. We\'ll be in touch.</p>';
+          }
+        })
+        .catch(function () {
+          var container = document.getElementById('waitlistForm');
+          if (container) {
+            container.innerHTML = '<p class="waitlist-success">Got it. We\'ll be in touch.</p>';
+          }
+        });
+      };
+    })();
   </script>
 </body>
 </html>
