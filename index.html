@@ -1192,9 +1192,39 @@
     /* ============ PRICING ============ */
     #pricing { background: var(--charcoal); }
 
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 0;
+    }
+
+    .pricing-left {}
+
+    .pricing-stat-row {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .pricing-stat-row:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+
+    .pricing-stat-value {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .pricing-stat-label {
+      font-size: 13px;
+      color: rgba(232,226,204,0.6);
+      line-height: 1.5;
+    }
+
     .pricing-card {
-      max-width: 760px;
-      margin: 60px auto 0;
+      max-width: none;
+      margin: 0;
       background: var(--charcoal-mid);
       border: 1px solid var(--line);
       padding: 56px 56px;
@@ -1260,6 +1290,7 @@
     .pricing-note strong { color: var(--bone); }
 
     @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; gap: 3rem; }
       .pricing-card { padding: 36px 28px; }
     }
 
@@ -2070,30 +2101,44 @@
   <!-- ============ PRICING ============ -->
   <section id="pricing" >
     <div class="container">
-      <div class="reveal">
-        <p class="label">What It Costs</p>
-        <h2 class="section-headline">Honest Pricing.<br><span class="text-orange">No Surprises.</span></h2>
-        <div class="divider"></div>
-        <p style="font-size:1rem; color:var(--bone-dim); max-width:520px; line-height:1.75;">Month-to-month retainers. No long-term contracts. If we're not performing, you shouldn't stay. It's that simple.</p>
-      </div>
-
-      <div class="pricing-card reveal">
-        <h3 class="pricing-amount">Retainers from <span>$3,000/mo</span></h3>
-        <p class="pricing-extra">+10% of Ad Spend for $100K or less</p>
-        <p class="pricing-range">Most engagements run $3,000–$6,000/month depending on scope and ad spend.</p>
-        <div class="pricing-includes">
-          <p class="pricing-includes-title">What's included</p>
-          <ul>
-            <li>Creative production (volume based on tier)</li>
-            <li>Paid media management — Meta and/or Google</li>
-            <li>Weekly performance optimization</li>
-            <li>Monthly reporting on CAC, ROAS, and revenue impact</li>
-            <li>Direct access to the people actually doing the work</li>
-          </ul>
+      <div class="pricing-grid reveal">
+        <div class="pricing-left">
+          <p class="label">What It Costs</p>
+          <h2 class="section-headline">Honest Pricing.<br><span class="text-orange">No Surprises.</span></h2>
+          <div class="divider"></div>
+          <p style="font-size:1rem; color:var(--bone-dim); max-width:520px; line-height:1.75; margin-bottom: 40px;">Month-to-month retainers. No long-term contracts. If we're not performing, you shouldn't stay. It's that simple.</p>
+          <div class="pricing-stat-row">
+            <p class="pricing-stat-value">$3K</p>
+            <p class="pricing-stat-label">Starting retainer — most engagements run $3K–$6K/month</p>
+          </div>
+          <div class="pricing-stat-row">
+            <p class="pricing-stat-value">+10%</p>
+            <p class="pricing-stat-label">Of ad spend for budgets $100K/month or less</p>
+          </div>
+          <div class="pricing-stat-row">
+            <p class="pricing-stat-value">M–M</p>
+            <p class="pricing-stat-label">Month-to-month. No annual lock-in. No cancellation fees.</p>
+          </div>
         </div>
-        <a href="#contact" class="btn btn--primary">Talk to Us About Your Brand →</a>
-        <div class="pricing-note">
-          <strong>Ad spend is separate</strong> — that's your budget, we manage it. We take on a limited number of new clients per quarter. If the timing isn't right, we'll tell you.
+
+        <div class="pricing-card">
+          <h3 class="pricing-amount">Retainers from <span>$3,000/mo</span></h3>
+          <p class="pricing-extra">+10% of Ad Spend for $100K or less</p>
+          <p class="pricing-range">Most engagements run $3,000–$6,000/month depending on scope and ad spend.</p>
+          <div class="pricing-includes">
+            <p class="pricing-includes-title">What's included</p>
+            <ul>
+              <li>Creative production (volume based on tier)</li>
+              <li>Paid media management — Meta and/or Google</li>
+              <li>Weekly performance optimization</li>
+              <li>Monthly reporting on CAC, ROAS, and revenue impact</li>
+              <li>Direct access to the people actually doing the work</li>
+            </ul>
+          </div>
+          <a href="#contact" class="btn btn--primary">Talk to Us About Your Brand →</a>
+          <div class="pricing-note">
+            <strong>Ad spend is separate</strong> — that's your budget, we manage it. We take on a limited number of new clients per quarter. If the timing isn't right, we'll tell you.
+          </div>
         </div>
       </div>
     </div>
