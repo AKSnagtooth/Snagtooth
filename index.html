@@ -462,7 +462,7 @@
     .logo-pill:hover { opacity: 1; }
 
     /* ============ PROBLEM ============ */
-    #problem { background: var(--charcoal); position: relative; }
+    #problem { background: var(--charcoal); position: relative; padding-bottom: 80px; }
 
     #problem::before {
       content: '';
@@ -480,9 +480,19 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      align-items: start;
+      align-items: stretch;
       position: relative;
       z-index: 1;
+    }
+
+    .problem-grid > .reveal {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .problem-grid > .reveal .problem-body.hook {
+      margin-top: auto;
+      padding-top: 2rem;
     }
 
     .problem-headline {
@@ -505,10 +515,13 @@
     .problem-body + .problem-body { margin-top: 0; }
 
     .problem-body.hook {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      line-height: 1.2;
       color: var(--bone);
-      font-weight: 600;
-      font-size: 18px;
-      margin-top: 8px;
+      margin-bottom: 0;
+      max-width: none;
     }
 
     .pain-cards {
@@ -520,7 +533,7 @@
     .pain-card + .pain-card { border-top: 1px solid var(--line); }
 
     .pain-card {
-      padding: 32px 36px;
+      padding: 2rem 2rem 2rem 2.5rem;
       background: var(--charcoal-mid);
       border-left: 3px solid var(--orange-dim);
       position: relative;
@@ -556,19 +569,21 @@
 
     .pain-card-number {
       font-family: var(--font-display);
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      color: var(--gold);
-      opacity: 0.5;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
+      font-size: 3rem;
+      line-height: 1;
+      color: rgba(255,255,255,0.08);
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      margin: 0;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
     }
 
     .pain-card-title {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 10px;
