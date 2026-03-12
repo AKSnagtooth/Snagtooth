@@ -1376,6 +1376,9 @@
       .pricing-card { padding: 36px 28px; }
     }
 
+    /* Fix 4 — Pricing CTA button: square corners */
+    .pricing-card .btn--primary { border-radius: 2px; }
+
     /* ============ SECTION CTAs ============ */
     .section-cta {
       display: inline-block;
@@ -1803,6 +1806,23 @@
       /* Contact form */
       .form-row { grid-template-columns: 1fr; }
     }
+
+    @media (max-width: 768px) {
+      /* Fix 1 — Services: reduce gap below Paid Media card */
+      #services { padding-bottom: 3rem; }
+
+      /* Fix 2 — Why/Value section: reduce dead space */
+      #why { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+      #why .why-quote { margin-top: 2rem; }
+
+      /* Fix 3 — Logo marquee: prevent clipping */
+      .logos-marquee-outer { overflow: hidden; }
+      .logos-row { gap: 2.5rem; }
+      .logos-row img { height: 18px; width: auto; }
+
+      /* Fix 5 — Testimonials: reduce dead space below */
+      #testimonials { padding-bottom: 3rem; }
+    }
   </style>
 </head>
 <body>
@@ -2149,7 +2169,6 @@
       <div class="services-grid reveal">
         <div class="service-card">
           <p class="service-icon">01 — Creative</p>
-          <p class="service-category">Creative Production</p>
           <h3 class="service-title">Creative Production</h3>
           <p class="service-body">High-end ad creative built to perform — not to sit in a portfolio deck. Strategy, concept, production, and iteration all in house.</p>
           <ul class="service-list">
@@ -2163,7 +2182,6 @@
         </div>
         <div class="service-card">
           <p class="service-icon">02 — Media</p>
-          <p class="service-category">Paid Media</p>
           <h3 class="service-title">Paid Media</h3>
           <p class="service-body">Meta and Google Ads managed by people who made the creative they're running. When something's off, we see it and fix it — same team, same day.</p>
           <ul class="service-list">
