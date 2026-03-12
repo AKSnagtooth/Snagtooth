@@ -1294,6 +1294,38 @@
       .pricing-card { padding: 36px 28px; }
     }
 
+    /* ============ SECTION CTAs ============ */
+    .section-cta {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 1rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .section-cta--dark {
+      background: var(--black);
+      color: var(--bone);
+    }
+    .section-cta--dark:hover { background: var(--charcoal-light); color: var(--bone); }
+    .section-cta--orange {
+      background: var(--orange);
+      color: var(--black);
+    }
+    .section-cta--orange:hover { background: var(--orange-hot); color: var(--black); }
+    .section-cta--outline {
+      background: transparent;
+      color: var(--orange);
+      border: 1.5px solid var(--orange);
+    }
+    .section-cta--outline:hover { background: var(--orange); color: var(--black); }
+    .section-cta--full { display: block; width: 100%; text-align: center; box-sizing: border-box; }
+
     /* ============ CONTACT FORM ============ */
     #contact { position: relative; }
 
@@ -1872,6 +1904,9 @@
           <p>No 50-person agency overhead. You work with the people doing the work. Fast, sharp, and your retainer stays honest.</p>
         </div>
       </div>
+      <div style="margin-top: 48px;">
+        <a href="#cta" class="section-cta section-cta--dark">STOP PAYING FOR HALF THE JOB →</a>
+      </div>
     </div>
   </section>
 
@@ -2022,6 +2057,9 @@
           </div>
         </div>
       </div>
+      <div style="margin-top: 56px;">
+        <a href="#cta" class="section-cta section-cta--orange">SEE IF YOUR BRAND QUALIFIES →</a>
+      </div>
     </div>
   </section>
 
@@ -2064,6 +2102,9 @@
           </ul>
           <p class="service-note">We report on the numbers that affect your P&amp;L. That's it.</p>
         </div>
+      </div>
+      <div style="margin-top: 48px;">
+        <a href="#cta" class="section-cta section-cta--outline">LET'S TALK ABOUT YOUR ACCOUNT →</a>
       </div>
 
       <div class="not-included reveal">
@@ -2208,11 +2249,15 @@
           <div class="pricing-note">
             <strong>Ad spend is separate</strong> — that's your budget, we manage it. We take on a limited number of new clients per quarter. If the timing isn't right, we'll tell you.
           </div>
+          <div style="margin-top: 24px;">
+            <a href="#cta" class="section-cta section-cta--orange section-cta--full">FIND OUT IF YOU'RE A FIT →</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <span id="cta" style="display:block;position:relative;top:-80px;visibility:hidden;" aria-hidden="true"></span>
   <!-- ============ CONTACT FORM ============ -->
   <section id="contact">
     <div class="container">
