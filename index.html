@@ -20,12 +20,12 @@
       --charcoal-light: #2C2D1A;
       --bone:           #E8E2CC;
       --bone-dim:       #9E9880;
-      --orange:         #FF6700;
-      --orange-hot:     #FF7A1A;
-      --orange-dim:     #7A3100;
-      --gold:           #C49855;
-      --gold-dim:       rgba(196,152,85,0.15);
-      --gold-glow:      rgba(196,152,85,0.06);
+      --orange:         #FF5C00;
+      --orange-hot:     #FF6D1A;
+      --orange-dim:     #7A2C00;
+      --gold:           #C9A84C;
+      --gold-dim:       rgba(201,168,76,0.15);
+      --gold-glow:      rgba(201,168,76,0.06);
       --bone-body:      var(--bone-body);
       --on-orange:      rgba(0,0,0,0.8);
       --on-orange-dim:  rgba(0,0,0,0.7);
@@ -33,7 +33,7 @@
       --on-orange-card: rgba(0,0,0,0.12);
       --on-orange-border:rgba(0,0,0,0.15);
       --line:           rgba(232,226,204,0.08);
-      --line-hot:       rgba(255,103,0,0.25);
+      --line-hot:       rgba(255,92,0,0.25);
       --font-display:   'Anton', sans-serif;
       --font-body:      'Barlow', sans-serif;
     }
@@ -257,6 +257,25 @@
 
     .hero-bg { display: none; }
 
+    .hero-watermark {
+      position: absolute;
+      bottom: -0.08em;
+      left: -0.03em;
+      font-family: var(--font-display);
+      font-size: clamp(10rem, 26vw, 30rem);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--bone);
+      opacity: 0;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-watermark.is-revealed { opacity: 0.04; }
 
     .hero-content { position: relative; z-index: 1; width: 100%; }
 
@@ -384,7 +403,7 @@
 
     /* ============ PARTNERS BAR ============ */
     #logos {
-      background: var(--black);
+      background: var(--charcoal);
       padding: 64px 0;
       position: relative;
     }
@@ -440,118 +459,136 @@
       white-space: nowrap;
     }
 
-    .logo-pill img {
-      filter: brightness(0) invert(1);
-      opacity: 0.4;
-      height: 28px;
-      width: auto;
-      transition: opacity 0.2s ease;
-    }
-
     .logo-pill:hover { opacity: 1; }
-    .logo-pill:hover img { opacity: 0.75; }
 
     /* ============ PROBLEM ============ */
-    #problem {
-      background: var(--black);
-      position: relative;
-      padding: 140px 0;
+    #problem { background: var(--charcoal); position: relative; }
+
+    #problem::before {
+      content: '';
+      position: absolute;
+      top: 80px;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .autopsy-headline {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 5vw, 5.5rem);
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .problem-headline {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 800;
       text-transform: uppercase;
-      line-height: 0.9;
-      color: var(--bone);
-      max-width: 900px;
+      line-height: 0.95;
       margin-bottom: 32px;
     }
 
-    .autopsy-intro {
-      font-size: 16px;
-      color: rgba(232,226,204,0.55);
-      line-height: 1.75;
-      max-width: 680px;
-      margin-bottom: 16px;
-    }
-    .autopsy-intro:last-of-type { margin-bottom: 80px; }
+    .problem-headline .gold-accent { color: var(--bone); }
 
-    .autopsy-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 2px;
-      background: var(--orange);
-    }
-
-    .autopsy-col {
-      background: var(--black);
-      padding: 0 48px 48px 0;
-    }
-    .autopsy-col:last-child {
-      padding: 0 0 48px 48px;
-    }
-
-    .autopsy-col-header {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--orange);
-      padding: 20px 0;
-      margin-bottom: 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .autopsy-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .autopsy-mark {
-      color: var(--orange);
+    .problem-body {
       font-size: 17px;
-      line-height: 1.55;
-      flex-shrink: 0;
-      width: 20px;
-    }
-
-    .autopsy-text {
-      font-size: 16px;
       color: rgba(232,226,204,0.75);
-      line-height: 1.6;
+      line-height: 1.75;
+      margin-bottom: 20px;
+      max-width: 480px;
     }
+    .problem-body + .problem-body { margin-top: 0; }
 
-    .autopsy-pullquote {
-      margin-top: 80px;
-      padding-left: 32px;
-      border-left: 1px solid var(--orange);
-      max-width: 700px;
-    }
-
-    .autopsy-pullquote p {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-style: italic;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
+    .problem-body.hook {
       color: var(--bone);
-      line-height: 1.2;
+      font-weight: 600;
+      font-size: 18px;
+      margin-top: 8px;
+    }
+
+    .pain-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .pain-card + .pain-card { border-top: 1px solid var(--line); }
+
+    .pain-card {
+      padding: 32px 36px;
+      background: var(--charcoal-mid);
+      border-left: 3px solid var(--orange-dim);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .pain-card.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .pain-card:nth-child(1) { transition-delay: 0.2s; }
+    .pain-card:nth-child(2) { transition-delay: 0.35s; }
+    .pain-card:nth-child(3) { transition-delay: 0.5s; }
+
+    .pain-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(255,92,0,0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .pain-card:hover {
+      border-color: var(--orange);
+      background: var(--charcoal-light);
+    }
+    .pain-card:hover::after { opacity: 1; }
+
+    .pain-card-number {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pain-card-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: var(--bone);
+      position: relative;
+      z-index: 1;
+    }
+
+    .pain-card p {
+      font-size: 16px;
+      color: var(--bone-body);
+      line-height: 1.75;
+      position: relative;
+      z-index: 1;
     }
 
     .metric { color: var(--gold); font-weight: 600; }
 
     @media (max-width: 900px) {
-      .autopsy-grid {
-        grid-template-columns: 1fr;
-        background: transparent;
-        gap: 48px;
-      }
-      .autopsy-col,
-      .autopsy-col:last-child {
-        padding: 0;
-      }
+      .problem-grid { grid-template-columns: 1fr; gap: 48px; }
     }
 
     /* ============ SOLUTION ============ */
@@ -819,18 +856,7 @@
       background: var(--charcoal);
       position: relative;
     }
-    #services .service-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-top: 3px solid var(--orange);
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    #services .service-card:hover {
-      background: rgba(255,255,255,0.06);
-      border-top-color: var(--orange-hot);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
+    #services .service-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); }
 
     .services-grid {
       display: grid;
@@ -842,45 +868,6 @@
     .service-card {
       padding: 56px 48px;
       background: var(--charcoal);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-ghost-number {
-      position: absolute;
-      top: 32px;
-      right: 36px;
-      font-family: var(--font-display);
-      font-size: 88px;
-      line-height: 1;
-      color: rgba(255,103,0,0.07);
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-    }
-
-    .service-icon-box {
-      width: 44px;
-      height: 44px;
-      border: 1.5px solid var(--orange);
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-icon-box svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--orange);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
     }
 
     .service-icon {
@@ -1011,7 +998,7 @@
     /* All scratch paths start invisible (drawn in via dashoffset) */
     .scratch-path {
       fill: none;
-      stroke: #FF6700;
+      stroke: #FF5C00;
       stroke-linecap: round;
       stroke-linejoin: round;
       stroke-dasharray: 1;
@@ -1080,15 +1067,11 @@
 
     .step-number {
       font-family: var(--font-display);
-      font-size: clamp(3.5rem, 6vw, 5rem);
+      font-size: clamp(3rem, 5vw, 4rem);
       font-weight: 900;
-      color: rgba(0,0,0,0.10);
+      color: var(--gold);
       line-height: 1;
       margin-bottom: 20px;
-    }
-
-    .process-step + .process-step {
-      border-left: 1px solid rgba(0,0,0,0.10);
     }
 
     .step-title {
@@ -1187,25 +1170,6 @@
     .testimonial-author {
       border-top: 1px solid var(--line);
       padding-top: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .testimonial-avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: rgba(255,103,0,0.1);
-      border: 1px solid rgba(255,103,0,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 12px;
-      color: var(--orange);
-      letter-spacing: 0.05em;
-      flex-shrink: 0;
     }
     .testimonial-name {
       font-family: var(--font-display);
@@ -1228,44 +1192,11 @@
     /* ============ PRICING ============ */
     #pricing { background: var(--charcoal); }
 
-    .pricing-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-      margin-top: 60px;
-    }
-
-    .pricing-proof {}
-
-    .pricing-stat-row {
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .pricing-stat-row:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
-
-    .pricing-stat-value {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 2.5rem);
-      color: var(--orange);
-      line-height: 1;
-    }
-
-    .pricing-stat-label {
-      font-size: 13px;
-      color: rgba(232,226,204,0.6);
-      line-height: 1.5;
-    }
-
     .pricing-card {
-      max-width: none;
-      margin: 0;
+      max-width: 760px;
+      margin: 60px auto 0;
       background: var(--charcoal-mid);
       border: 1px solid var(--line);
-      border-top: 3px solid var(--orange);
       padding: 56px 56px;
     }
 
@@ -1287,7 +1218,7 @@
     }
 
     .pricing-includes {
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
     .pricing-includes-title {
       font-family: var(--font-display);
@@ -1318,78 +1249,22 @@
       font-weight: 700;
     }
 
-    .pricing-cta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      background: var(--orange);
-      color: var(--black);
-      font-family: var(--font-display);
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 18px 24px;
-      border-radius: 2px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s ease;
-      margin-bottom: 0;
-    }
-    .pricing-cta:hover { background: var(--orange-hot); color: var(--black); }
-
     .pricing-note {
-      font-size: 14px;
-      color: rgba(232,226,204,0.6);
+      font-size: 16px;
+      color: var(--bone-body);
       line-height: 1.75;
-      background: rgba(0,0,0,0.2);
-      border-top: 1px solid rgba(255,255,255,0.07);
       padding: 20px 24px;
-      margin: 32px -56px -56px;
+      border: 1px solid var(--line);
+      margin-top: 32px;
     }
     .pricing-note strong { color: var(--bone); }
 
-    @media (max-width: 900px) {
-      .pricing-layout { grid-template-columns: 1fr; gap: 48px; }
-    }
-
     @media (max-width: 768px) {
       .pricing-card { padding: 36px 28px; }
-      .pricing-note { margin: 32px -28px -36px; }
     }
 
     /* ============ CONTACT FORM ============ */
     #contact { position: relative; }
-
-    .scarcity-indicator {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 32px;
-    }
-
-    .scarcity-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--orange);
-      animation: scarcity-pulse 1.5s ease-in-out infinite;
-      flex-shrink: 0;
-    }
-
-    @keyframes scarcity-pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(0.7); opacity: 0.5; }
-    }
-
-    .scarcity-text {
-      font-family: var(--font-display);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--orange);
-    }
 
     .contact-grid {
       display: grid;
@@ -1658,56 +1533,6 @@
     .text-orange { color: var(--orange); }
     .text-dim { color: var(--bone-dim); }
 
-    /* ============ CHAIN DIVIDERS ============ */
-    .chain-divider {
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-      display: block;
-    }
-    .chain-divider img {
-      width: 100%;
-      height: 32px;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      filter: invert(1);
-      opacity: 0.18;
-    }
-    .chain-divider--orange img {
-      filter: none;
-      opacity: 0.12;
-    }
-    .barbed-wire-divider {
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-      display: block;
-      margin: 60px 0;
-    }
-    .barbed-wire-divider img {
-      width: 100%;
-      height: 24px;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      filter: invert(1);
-      opacity: 0.15;
-    }
-
-    /* ============ DOG TEETH HALFTONE (orange sections) ============ */
-    #why::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: url('assets/brand-assets/ST_DOG-TEETH_HALFTONE_BLK_V1%201.png');
-      background-size: 600px auto;
-      mix-blend-mode: multiply;
-      opacity: 0.06;
-      z-index: 0;
-    }
-
     /* ============ HALFTONE TEXTURE ============ */
     .hero-orange::after,
     #logos::after,
@@ -1790,6 +1615,7 @@
   <!-- ============ HERO ============ -->
   <section id="hero">
     <div class="hero-bg"></div>
+    <div class="hero-watermark" aria-hidden="true">SNAGTOOTH</div>
     <div class="container">
       <div class="hero-content">
         <p class="hero-eyebrow">Creative Production + Paid Media</p>
@@ -1849,10 +1675,7 @@
     </div>
   </div>
 
-  <div class="chain-divider chain-divider--orange" aria-hidden="true">
-    <img src="assets/brand-assets/chain-line-3.png" alt="">
-  </div>
-
+  <!-- ============ LOGO BAR ============ -->
   <!-- ============ LOGO BAR ============ -->
   <section id="logos">
     <div class="container">
@@ -1860,64 +1683,62 @@
     </div>
     <div class="logos-marquee-outer">
       <div class="logos-row">
-        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="NY Islanders" class="logo-pill">
-        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="Adidas" class="logo-pill">
-        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="Fucking Awesome" class="logo-pill">
-        <img src="assets/logos/young%20nails.png" alt="Young Nails" class="logo-pill">
-        <img src="assets/logos/BOSS-Logo-w%201.png" alt="BOSS" class="logo-pill">
-        <img src="assets/logos/MauiandSons.png" alt="Maui and Sons" class="logo-pill">
-        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="Literati" class="logo-pill">
+        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="NY Islanders" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="Adidas" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="Fucking Awesome" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/young%20nails.png" alt="Young Nails" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/BOSS-Logo-w%201.png" alt="BOSS" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/MauiandSons.png" alt="Maui and Sons" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="Literati" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <!-- duplicate set 2 -->
-        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill">
+        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <!-- duplicate set 3 -->
-        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill">
-        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill">
+        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
       </div>
     </div>
   </section>
 
-  <div class="chain-divider chain-divider--orange" aria-hidden="true">
-    <img src="assets/brand-assets/chain-line-3.png" alt="">
-  </div>
-
   <!-- ============ PROBLEM ============ -->
   <section id="problem">
     <div class="container">
-      <div class="reveal">
-        <p class="label">The Broken Model</p>
-        <h2 class="autopsy-headline">Your Creative Team and Your Media Buyer Have Never Spoken.</h2>
-        <p class="autopsy-intro">You're paying one team to make ads. Another one — or the same agency's "other department" — to run them. The brief gets lost in translation. The creative looks great in a deck and dies on day three in the account.</p>
-        <p class="autopsy-intro">Meanwhile, your <span class="metric">CAC</span> is climbing. Your <span class="metric">ROAS</span> is sliding. And your agency just sent you a monthly report full of impressions and reach instead of the numbers you actually care about.</p>
-      </div>
-      <div class="autopsy-grid reveal reveal-delay-1">
-        <div class="autopsy-col">
-          <p class="autopsy-col-header">The Old Way</p>
-          <div class="autopsy-row"><span class="autopsy-mark">✕</span><span class="autopsy-text">Creative team hasn't seen your Ads Manager.</span></div>
-          <div class="autopsy-row"><span class="autopsy-mark">✕</span><span class="autopsy-text">Media buyer can't brief the designer.</span></div>
-          <div class="autopsy-row"><span class="autopsy-mark">✕</span><span class="autopsy-text">You get a deck. Not results.</span></div>
-          <div class="autopsy-row"><span class="autopsy-mark">✕</span><span class="autopsy-text">Three teams. Three invoices. One excuse.</span></div>
+      <div class="problem-grid">
+        <div class="reveal">
+          <p class="label">The Broken Model</p>
+          <h2 class="problem-headline">Your Creative Team and Your Media Buyer Have Never Spoken.</h2>
+          <div class="divider"></div>
+          <p class="problem-body">You're paying one team to make ads. Another one — or the same agency's "other department" — to run them. The brief gets lost in translation. The creative looks great in a deck and dies on day three in the account.</p>
+          <p class="problem-body">Meanwhile, your <span class="metric">CAC</span> is climbing. Your <span class="metric">ROAS</span> is sliding. And your agency just sent you a monthly report full of impressions and reach instead of the numbers you actually care about.</p>
+          <p class="problem-body hook">Sound familiar?</p>
         </div>
-        <div class="autopsy-col">
-          <p class="autopsy-col-header">The Snagtooth Way</p>
-          <div class="autopsy-row"><span class="autopsy-mark">→</span><span class="autopsy-text">We built the ad. We're reading the data.</span></div>
-          <div class="autopsy-row"><span class="autopsy-mark">→</span><span class="autopsy-text">Same person. Same day. No chain.</span></div>
-          <div class="autopsy-row"><span class="autopsy-mark">→</span><span class="autopsy-text">We ship creative and optimize it.</span></div>
-          <div class="autopsy-row"><span class="autopsy-mark">→</span><span class="autopsy-text">One team. One retainer. One throat to choke.</span></div>
+        <div class="pain-cards">
+          <div class="pain-card">
+            <p class="pain-card-number">01</p>
+            <p class="pain-card-title">Creative That Doesn't Convert</p>
+            <p>Beautiful ads. Terrible <span class="metric">CAC</span>. Your agency's creative team hasn't looked at your Ads Manager once.</p>
+          </div>
+          <div class="pain-card">
+            <p class="pain-card-number">02</p>
+            <p class="pain-card-title">Media Buyers Flying Blind</p>
+            <p>Your media buyer is optimizing in a vacuum. They didn't make the creative. They can't change the creative. So they adjust the targeting and hope.</p>
+          </div>
+          <div class="pain-card">
+            <p class="pain-card-number">03</p>
+            <p class="pain-card-title">Reports That Say Nothing</p>
+            <p>Reach. Impressions. Engagement rate. None of these pay your rent. You want <span class="metric">CAC</span>, <span class="metric">ROAS</span>, and <span class="metric">revenue</span>. You keep getting slideshows.</p>
+          </div>
         </div>
-      </div>
-      <div class="autopsy-pullquote reveal">
-        <p>Sound familiar?</p>
       </div>
     </div>
   </section>
@@ -2104,10 +1925,6 @@
     </div>
   </section>
 
-  <div class="chain-divider" aria-hidden="true">
-    <img src="assets/brand-assets/chain-line-3.png" alt="">
-  </div>
-
   <!-- ============ SERVICES ============ -->
   <section id="services">
     <div class="container">
@@ -2120,10 +1937,6 @@
 
       <div class="services-grid reveal reveal-delay-1">
         <div class="service-card">
-          <div class="service-ghost-number">01</div>
-          <div class="service-icon-box">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/></svg>
-          </div>
           <p class="service-icon">01 — Creative</p>
           <p class="service-category">Creative Production</p>
           <h3 class="service-title">Creative Production</h3>
@@ -2138,10 +1951,6 @@
           <p class="service-note">Production quality from a former LA Kings Creative Director. Built for the data, not the awards shelf.</p>
         </div>
         <div class="service-card">
-          <div class="service-ghost-number">02</div>
-          <div class="service-icon-box">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="2,12 6,12 8,4 10,20 12,9 14,15 16,12 22,12"/></svg>
-          </div>
           <p class="service-icon">02 — Media</p>
           <p class="service-category">Paid Media</p>
           <h3 class="service-title">Paid Media</h3>
@@ -2155,10 +1964,6 @@
           </ul>
           <p class="service-note">We report on the numbers that affect your P&amp;L. That's it.</p>
         </div>
-      </div>
-
-      <div class="barbed-wire-divider" aria-hidden="true">
-        <img src="assets/brand-assets/barbed-wire.png" alt="">
       </div>
 
       <div class="not-included reveal">
@@ -2227,10 +2032,6 @@
     </div>
   </section>
 
-  <div class="chain-divider chain-divider--orange" aria-hidden="true">
-    <img src="assets/brand-assets/chain-line-3.png" alt="">
-  </div>
-
   <!-- ============ TESTIMONIALS ============ -->
   <section id="testimonials">
     <div class="container">
@@ -2244,31 +2045,22 @@
         <div class="testimonial reveal">
           <p class="testimonial-quote">Snagtooth understood our vision and helped build it out flawlessly. Amazing talent and a very fun team to work with. Great energy and professionalism. Can't wait to work with the team again.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">NS</div>
-            <div>
-              <p class="testimonial-name">Nick Sultana</p>
-              <p class="testimonial-title">Creative Director, New York Islanders</p>
-            </div>
+            <p class="testimonial-name">Nick Sultana</p>
+            <p class="testimonial-title">Creative Director, New York Islanders</p>
           </div>
         </div>
         <div class="testimonial reveal reveal-delay-1">
           <p class="testimonial-quote">Working with Snagtooth was an incredible experience. Their creative energy and strategic insight brought our rebrand to life, delivering a visually stunning, on-brand piece that continues to drive strong engagement.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">HS</div>
-            <div>
-              <p class="testimonial-name">Habib Salo</p>
-              <p class="testimonial-title">CEO, Young Nails</p>
-            </div>
+            <p class="testimonial-name">Habib Salo</p>
+            <p class="testimonial-title">CEO, Young Nails</p>
           </div>
         </div>
         <div class="testimonial reveal reveal-delay-2">
           <p class="testimonial-quote">Aleks is excellent at what he does — delivering insightful strategy and first-rate implementation. He has helped us grow several channels from dormant or non-existent to thriving and high-performing. I now recommend him and Snagtooth to everyone.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">JC</div>
-            <div>
-              <p class="testimonial-name">Jay Carson</p>
-              <p class="testimonial-title">Creator, The Morning Show &amp; House of Cards</p>
-            </div>
+            <p class="testimonial-name">Jay Carson</p>
+            <p class="testimonial-title">Creator, The Morning Show &amp; House of Cards</p>
           </div>
         </div>
       </div>
@@ -2285,40 +2077,23 @@
         <p style="font-size:1rem; color:var(--bone-dim); max-width:520px; line-height:1.75;">Month-to-month retainers. No long-term contracts. If we're not performing, you shouldn't stay. It's that simple.</p>
       </div>
 
-      <div class="pricing-layout reveal">
-        <div class="pricing-proof">
-          <div class="pricing-stat-row">
-            <span class="pricing-stat-value">$3K</span>
-            <span class="pricing-stat-label">Retainers start at $3,000/mo — no bloated agency overhead</span>
-          </div>
-          <div class="pricing-stat-row">
-            <span class="pricing-stat-value">+10%</span>
-            <span class="pricing-stat-label">Of ad spend for accounts under $100K/mo — aligned incentives</span>
-          </div>
-          <div class="pricing-stat-row">
-            <span class="pricing-stat-value">M–M</span>
-            <span class="pricing-stat-label">Month-to-month. No lock-in. If we're not performing, you walk</span>
-          </div>
+      <div class="pricing-card reveal">
+        <h3 class="pricing-amount">Retainers from <span>$3,000/mo</span></h3>
+        <p class="pricing-extra">+10% of Ad Spend for $100K or less</p>
+        <p class="pricing-range">Most engagements run $3,000–$6,000/month depending on scope and ad spend.</p>
+        <div class="pricing-includes">
+          <p class="pricing-includes-title">What's included</p>
+          <ul>
+            <li>Creative production (volume based on tier)</li>
+            <li>Paid media management — Meta and/or Google</li>
+            <li>Weekly performance optimization</li>
+            <li>Monthly reporting on CAC, ROAS, and revenue impact</li>
+            <li>Direct access to the people actually doing the work</li>
+          </ul>
         </div>
-
-        <div class="pricing-card">
-          <h3 class="pricing-amount">Retainers from <span>$3,000/mo</span></h3>
-          <p class="pricing-extra">+10% of Ad Spend for $100K or less</p>
-          <p class="pricing-range">Most engagements run $3,000–$6,000/month depending on scope and ad spend.</p>
-          <div class="pricing-includes">
-            <p class="pricing-includes-title">What's included</p>
-            <ul>
-              <li>Creative production (volume based on tier)</li>
-              <li>Paid media management — Meta and/or Google</li>
-              <li>Weekly performance optimization</li>
-              <li>Monthly reporting on CAC, ROAS, and revenue impact</li>
-              <li>Direct access to the people actually doing the work</li>
-            </ul>
-          </div>
-          <a href="#contact" class="pricing-cta">Talk to Us About Your Brand <span>→</span></a>
-          <div class="pricing-note">
-            <strong>Ad spend is separate</strong> — that's your budget, we manage it. We take on a limited number of new clients per quarter. If the timing isn't right, we'll tell you.
-          </div>
+        <a href="#contact" class="btn btn--primary">Talk to Us About Your Brand →</a>
+        <div class="pricing-note">
+          <strong>Ad spend is separate</strong> — that's your budget, we manage it. We take on a limited number of new clients per quarter. If the timing isn't right, we'll tell you.
         </div>
       </div>
     </div>
@@ -2343,10 +2118,6 @@
           <div class="contact-detail">
             <p class="contact-detail-label">Contract type</p>
             <p class="contact-detail-value">Month-to-month</p>
-          </div>
-          <div class="scarcity-indicator">
-            <span class="scarcity-dot"></span>
-            <span class="scarcity-text">Limited spots available this quarter</span>
           </div>
         </div>
 
@@ -2500,6 +2271,7 @@
     (function () {
       var headline  = document.querySelector('.hero-headline');
       var eyebrow   = document.querySelector('.hero-eyebrow');
+      var watermark = document.querySelector('.hero-watermark');
       if (!headline) return;
 
       var parts = headline.innerHTML.split(/<br\s*\/?>/i);
@@ -2515,6 +2287,8 @@
       var START    = 300;
 
       setTimeout(function () {
+        if (watermark) watermark.classList.add('is-revealed');
+
         lines.forEach(function (line, i) {
           setTimeout(function () {
             line.classList.add('is-revealed');
@@ -2527,6 +2301,62 @@
       }, START);
     })();
 
+    // HERO CURSOR PARALLAX
+    (function () {
+      if (!window.matchMedia('(min-width: 768px)').matches) return;
+      if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+      var hero      = document.getElementById('hero');
+      var watermark = hero && hero.querySelector('.hero-watermark');
+      var headline  = hero && hero.querySelector('.hero-headline');
+      if (!hero || !watermark || !headline) return;
+
+      var LERP  = 0.08;
+      var W_MAX = 20;
+      var H_MAX = 8;
+
+      var tWX = 0, tWY = 0;
+      var tHX = 0, tHY = 0;
+      var cWX = 0, cWY = 0;
+      var cHX = 0, cHY = 0;
+      var rafId = null;
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function tick() {
+        cWX = lerp(cWX, tWX, LERP);
+        cWY = lerp(cWY, tWY, LERP);
+        cHX = lerp(cHX, tHX, LERP);
+        cHY = lerp(cHY, tHY, LERP);
+
+        watermark.style.transform = 'translateX(' + cWX + 'px) translateY(' + cWY + 'px)';
+        headline.style.transform  = 'translateX(' + cHX + 'px) translateY(' + cHY + 'px)';
+
+        var dist = Math.abs(cWX - tWX) + Math.abs(cWY - tWY)
+                 + Math.abs(cHX - tHX) + Math.abs(cHY - tHY);
+        rafId = dist > 0.05 ? requestAnimationFrame(tick) : null;
+      }
+
+      function startRaf() {
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+
+      hero.addEventListener('mousemove', function (e) {
+        var rect = hero.getBoundingClientRect();
+        var nx = ((e.clientX - rect.left)  / rect.width  - 0.5) * 2;
+        var ny = ((e.clientY - rect.top)   / rect.height - 0.5) * 2;
+        tWX = -nx * W_MAX;
+        tWY = -ny * W_MAX;
+        tHX =  nx * H_MAX;
+        tHY =  ny * H_MAX;
+        startRaf();
+      });
+
+      hero.addEventListener('mouseleave', function () {
+        tWX = tWY = tHX = tHY = 0;
+        startRaf();
+      });
+    })();
 
     // ANIMATED COUNTERS
     (function () {
