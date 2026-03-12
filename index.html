@@ -80,6 +80,7 @@
     .container--narrow { max-width: 820px; margin: 0 auto; padding: 0 24px; }
 
     section { padding: 120px 0; }
+    #services, #process, #testimonials { padding: 100px 0; }
     @media (max-width: 768px) { section { padding: 70px 0; } }
 
     /* ============ BUTTONS ============ */
@@ -626,55 +627,30 @@
       line-height: 0.9;
       margin-bottom: 20px;
     }
-    .solution-headline .accent { color: var(--orange); }
+    .solution-headline .accent { color: var(--black); }
 
-    .solution-sub {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      color: var(--bone-body);
-      max-width: 640px;
-      line-height: 1.75;
-      margin-bottom: 36px;
+    .why-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 80px;
+      align-items: center;
     }
-
-    .solution-divider {
-      width: 60px;
-      height: 4px;
-      background: var(--black);
-      opacity: 0.2;
-      margin: 32px 0 36px;
-      border: none;
-    }
-
-    .solution-body {
-      font-size: 17px;
-      color: var(--bone-body);
-      max-width: 560px;
-      line-height: 1.8;
-      margin-bottom: 24px;
-    }
-    .solution-body strong { color: var(--bone); }
-
-    .solution-callout {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3vw, 2.1rem);
-      text-transform: uppercase;
-      line-height: 1.1;
+    .why-left { display: flex; flex-direction: column; }
+    .why-quote {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.25;
       color: var(--black);
-      border-left: 4px solid var(--gold);
-      padding-left: 24px;
-      margin: 48px 0;
-      max-width: 640px;
+      margin-bottom: 28px;
     }
-
-    .solution-closing {
+    .why-closing {
       font-size: 16px;
-      opacity: 0.6;
-      color: var(--on-orange);
-      max-width: 640px;
+      color: rgba(0,0,0,0.5);
       line-height: 1.75;
-      margin-bottom: 60px;
+    }
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: 1fr; gap: 48px; }
     }
 
     .diff-cards {
@@ -1052,12 +1028,7 @@
     /* ============ FAQ ============ */
     .faq-list { display: flex; flex-direction: column; }
     .faq-item {
-      padding: 28px 0;
       border-bottom: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 40px;
-      align-items: start;
     }
     .faq-item:first-child { border-top: 1px solid var(--line); }
     .faq-q {
@@ -1067,14 +1038,36 @@
       color: var(--bone);
       text-transform: uppercase;
       line-height: 1.3;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 0;
+      user-select: none;
     }
+    .faq-q:hover { color: var(--orange); }
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+      opacity: 0.5;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); opacity: 1; }
+    .faq-item.open .faq-q { color: var(--orange); }
     .faq-a {
       font-size: 16px;
       color: rgba(232,226,204,0.65);
       line-height: 1.75;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding-bottom 0.35s ease;
+      padding-bottom: 0;
     }
-    @media (max-width: 768px) {
-      .faq-item { grid-template-columns: 1fr; gap: 10px; }
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding-bottom: 24px;
     }
 
     @media (max-width: 900px) {
@@ -1084,23 +1077,34 @@
     }
 
     /* ============ PROCESS ============ */
-    #process { background: var(--orange); position: relative; }
+    #process { background: var(--charcoal); position: relative; }
 
     .process-steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 0;
       margin-top: 60px;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--orange), var(--orange-hot));
+      z-index: 1;
     }
 
     .process-step {
       padding: 48px 36px 44px;
-      background: var(--charcoal);
-      border-top: 3px solid var(--orange);
-      border-radius: 6px;
+      background: var(--charcoal-mid);
+      border-top: none;
+      border-right: 1px solid rgba(255,255,255,0.05);
       position: relative;
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
+    .process-step:last-child { border-right: none; }
 
     .process-step:hover {
       background: var(--charcoal-light);
@@ -1109,13 +1113,35 @@
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
 
+    .step-node {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 11px;
+      color: var(--black);
+      letter-spacing: 0.05em;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 2;
+      margin-top: -14px;
+    }
+
     .step-number {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 5vw, 4rem);
+      font-size: clamp(5rem, 8vw, 7rem);
       font-weight: 900;
-      color: var(--gold);
+      color: rgba(255,255,255,0.04);
       line-height: 1;
-      margin-bottom: 20px;
+      position: absolute;
+      bottom: 16px;
+      right: 20px;
+      pointer-events: none;
+      user-select: none;
     }
 
     .step-title {
@@ -1161,10 +1187,9 @@
       .process-steps { grid-template-columns: 1fr; }
     }
 
-    /* PROCESS overrides for orange background — section headline/label only */
-    #process .section-headline { color: var(--black); }
-    #process .label { color: var(--on-orange-dim); }
-    #process .text-orange { color: var(--black); }
+    /* PROCESS overrides for dark background */
+    #process .section-headline { color: var(--bone); }
+    #process .label { color: var(--orange); }
 
     /* ============ TESTIMONIALS ============ */
     #testimonials { background: var(--black); }
@@ -1935,17 +1960,18 @@
   <!-- ============ SOLUTION ============ -->
   <section id="why">
     <div class="container">
-      <div class="reveal">
-        <p class="label">The Snagtooth Way</p>
-        <h2 class="solution-headline">We Make the Ads.<br><span class="accent">We Run the Ads.</span></h2>
-        <p class="solution-sub">That's not a tagline. It's the entire business model.</p>
-        <hr class="solution-divider">
-        <p class="solution-body">At Snagtooth, the creative team and the media buying team are the same people. When something isn't converting, we see it in the data and fix it in the creative — <span class="callout-accent">same day, same team</span>, no email chain.</p>
-        <blockquote class="solution-callout">No account managers playing telephone. No "we'll flag that for the creative team."</blockquote>
-        <p class="solution-closing">Just two sharp operators who've done this for brands with real budgets and real stakes — and the numbers to prove it.</p>
-      </div>
-      <div style="margin-top: 48px;">
-        <a href="#cta" class="section-cta section-cta--dark">STOP PAYING FOR HALF THE JOB →</a>
+      <div class="why-grid reveal">
+        <div class="why-left">
+          <p class="label">The Snagtooth Way</p>
+          <h2 class="solution-headline">We Make the Ads.<br><span class="accent">We Run the Ads.</span></h2>
+          <div style="margin-top: 40px;">
+            <a href="#cta" class="section-cta section-cta--outline">STOP PAYING FOR HALF THE JOB →</a>
+          </div>
+        </div>
+        <div class="why-right">
+          <p class="why-quote">No account managers playing telephone. No "we'll flag that for the creative team."</p>
+          <p class="why-closing">Just two sharp operators who've done this for brands with real budgets and real stakes — and the numbers to prove it.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -2103,6 +2129,10 @@
   <!-- ============ SERVICES ============ -->
   <section id="services">
     <div class="container">
+      <div class="reveal" style="margin-bottom: 48px;">
+        <p class="label">What We Do</p>
+        <p style="font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--bone-dim); max-width: 480px; line-height: 1.6; margin-top: 12px;">Everything we make, we run. Everything we run, we made.</p>
+      </div>
       <div class="services-grid reveal">
         <div class="service-card">
           <p class="service-icon">01 — Creative</p>
@@ -2145,19 +2175,22 @@
       </div>
       <div class="process-steps reveal reveal-delay-1">
         <div class="process-step">
-          <div class="step-number">01</div>
+          <div class="step-node">01</div>
           <h3 class="step-title">We Audit</h3>
           <p class="step-body">We get into your ad account, your creative, and your data. We find what's broken and what's working. No agenda — just a clear picture of where you are and what needs to happen next.</p>
+          <div class="step-number">01</div>
         </div>
         <div class="process-step">
-          <div class="step-number">02</div>
+          <div class="step-node">02</div>
           <h3 class="step-title">We Build</h3>
           <p class="step-body">New creative. New campaign architecture. Built to convert from day one — not after three months of "testing and learning" with your budget on the line.</p>
+          <div class="step-number">02</div>
         </div>
         <div class="process-step">
-          <div class="step-number">03</div>
+          <div class="step-node">03</div>
           <h3 class="step-title">We Optimize</h3>
           <p class="step-body">We're in the account weekly. Creative is updated based on data. You get one clear report on what happened and what's next. One invoice. One team.</p>
+          <div class="step-number">03</div>
         </div>
       </div>
       <div class="process-coda reveal">
@@ -2254,71 +2287,32 @@
     </div>
   </section>
 
-  <!-- ============ WHAT WE DON'T DO ============ -->
-  <section style="background: var(--charcoal); padding: 80px 0;">
-    <div class="container">
-      <div class="not-included reveal">
-        <p class="not-included-title">What We Don't Do</p>
-        <p class="not-included-strikeout">
-          <span>SEO
-            <svg class="scratch-svg" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp1-a" pathLength="1" stroke-width="6" d="M5,5 C60,18 120,40 195,55"/>
-              <path class="scratch-path sp1-b" pathLength="1" stroke-width="6" d="M195,5 C140,18 80,40 5,55"/>
-            </svg>
-          </span>
-          <span>Email Marketing
-            <svg class="scratch-svg" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp2" pathLength="1" stroke-width="5.5" d="M4,25 C60,20 120,42 200,38 C280,34 340,22 396,26"/>
-            </svg>
-          </span>
-          <span>Podcast Production
-            <svg class="scratch-svg" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp3-a" pathLength="1" stroke-width="5" d="M4,22 C120,18 250,26 396,20"/>
-              <path class="scratch-path sp3-b" pathLength="1" stroke-width="5" d="M4,35 C130,32 260,40 396,34"/>
-            </svg>
-          </span>
-          <span>Making Your Logo Bigger
-            <svg class="scratch-svg" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp4" pathLength="1" stroke-width="5" d="M4,30 C30,10 55,50 90,30 C125,10 155,50 195,30 C235,10 268,50 310,30 C350,10 385,50 425,30 C460,12 490,48 530,30 C550,20 568,38 596,28"/>
-            </svg>
-          </span>
-          <span>Community Management
-            <svg class="scratch-svg" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp5" pathLength="1" stroke-width="6" d="M5,8 C100,20 260,38 395,52"/>
-            </svg>
-          </span>
-        </p>
-        <p class="not-included-close"><strong>We stay in our lane because our lane is where we win.</strong> If you need those things, we'll point you to someone good.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ FAQ ============ -->
   <section style="background: var(--black); padding: 100px 0; border-top: 1px solid var(--line);">
     <div class="container">
       <div class="reveal" style="margin-bottom: 60px;">
         <p class="label">Common Questions</p>
-        <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.9; color: var(--bone);">Before You Fill Out<br>The Form.</h2>
+        <h2 class="section-headline">Before You Fill Out<br>The Form</h2>
       </div>
       <div class="faq-list reveal">
         <div class="faq-item">
-          <p class="faq-q">What size brands do you work with?</p>
+          <p class="faq-q">What size brands do you work with?<svg class="faq-chevron" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3,6 9,12 15,6"/></svg></p>
           <p class="faq-a">DTC and lifestyle brands doing $3M–$10M/year. If you're running $10K–$80K/month in ad spend and want a team that makes and runs your ads, you're in the right place.</p>
         </div>
         <div class="faq-item">
-          <p class="faq-q">What's the minimum commitment?</p>
+          <p class="faq-q">What's the minimum commitment?<svg class="faq-chevron" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3,6 9,12 15,6"/></svg></p>
           <p class="faq-a">Month-to-month. No annual contracts. No cancellation fees. If we're not performing, you shouldn't stay — and we'll tell you that before you do.</p>
         </div>
         <div class="faq-item">
-          <p class="faq-q">How fast do you start?</p>
+          <p class="faq-q">How fast do you start?<svg class="faq-chevron" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3,6 9,12 15,6"/></svg></p>
           <p class="faq-a">Typically within two weeks of signing. We audit first, then build. Most brands see movement in the first 30 days.</p>
         </div>
         <div class="faq-item">
-          <p class="faq-q">Do we need to have creative already?</p>
+          <p class="faq-q">Do we need to have creative already?<svg class="faq-chevron" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3,6 9,12 15,6"/></svg></p>
           <p class="faq-a">No. Creative production is half of what we do. We build everything from concept to final cut — strategy, video, statics, copy.</p>
         </div>
         <div class="faq-item">
-          <p class="faq-q">Do you work with brands outside the US?</p>
+          <p class="faq-q">Do you work with brands outside the US?<svg class="faq-chevron" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3,6 9,12 15,6"/></svg></p>
           <p class="faq-a">Yes, as long as you're running Meta Ads or Google Ads and your customer base is in English-speaking markets.</p>
         </div>
       </div>
@@ -2781,6 +2775,15 @@
         });
       };
     })();
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+      item.querySelector('.faq-q').addEventListener('click', function() {
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+        if (!isOpen) item.classList.add('open');
+      });
+    });
   </script>
 </body>
 </html>
