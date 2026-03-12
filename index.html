@@ -1049,6 +1049,34 @@
     }
     .not-included-close strong { color: var(--bone-body); }
 
+    /* ============ FAQ ============ */
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--line); }
+    .faq-q {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      color: var(--bone);
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .faq-a {
+      font-size: 16px;
+      color: rgba(232,226,204,0.65);
+      line-height: 1.75;
+    }
+    @media (max-width: 768px) {
+      .faq-item { grid-template-columns: 1fr; gap: 10px; }
+    }
+
     @media (max-width: 900px) {
       .services-grid { grid-template-columns: 1fr; }
       .service-card { padding: 40px 28px; }
@@ -1751,7 +1779,7 @@
         <ul class="nav-links">
           <li><a href="#work">Work</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#process">Why Us</a></li>
+          <li><a href="#why">Why Us</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1768,7 +1796,7 @@
     <button class="mobile-menu-close" id="mobileClose">✕</button>
     <a href="#work" class="mobile-link">Work</a>
     <a href="#services" class="mobile-link">Services</a>
-    <a href="#process" class="mobile-link">Why Us</a>
+    <a href="#why" class="mobile-link">Why Us</a>
     <a href="#pricing" class="mobile-link">Pricing</a>
     <a href="#contact" class="mobile-link">Contact</a>
     <a href="#contact" class="btn btn--primary" style="margin-top:16px;">Book a Call →</a>
@@ -1844,29 +1872,29 @@
     </div>
     <div class="logos-marquee-outer">
       <div class="logos-row">
-        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="NY Islanders" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="Adidas" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="Fucking Awesome" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/young%20nails.png" alt="Young Nails" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/BOSS-Logo-w%201.png" alt="BOSS" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/MauiandSons.png" alt="Maui and Sons" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
-        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="Literati" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="NY Islanders" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="Adidas" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="Fucking Awesome" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/young%20nails.png" alt="Young Nails" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/BOSS-Logo-w%201.png" alt="BOSS" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/MauiandSons.png" alt="Maui and Sons" class="logo-pill" loading="lazy" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="Literati" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <!-- duplicate set 2 -->
-        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
-        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <!-- duplicate set 3 -->
-        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
-        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Adidas_Logo_Alternative_1.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
+        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" loading="lazy" style="height:48px;width:auto;filter:brightness(0) invert(1);">
       </div>
     </div>
   </section>
@@ -1916,23 +1944,6 @@
         <blockquote class="solution-callout">No account managers playing telephone. No "we'll flag that for the creative team."</blockquote>
         <p class="solution-closing">Just two sharp operators who've done this for brands with real budgets and real stakes — and the numbers to prove it.</p>
       </div>
-      <div class="diff-cards reveal reveal-delay-1">
-        <div class="diff-card">
-          <div class="diff-number">01</div>
-          <h3 class="diff-title">One Roof. No Handoff.</h3>
-          <p>The person who designs your ad is the person who reads your dashboard. When performance drops, we fix it — not send a message to another team.</p>
-        </div>
-        <div class="diff-card">
-          <div class="diff-number">02</div>
-          <h3 class="diff-title">Built to Convert.</h3>
-          <p>We've worked at the highest levels of creative production. We use that to make ads that stop the scroll <em>and</em> move product — not win awards.</p>
-        </div>
-        <div class="diff-card">
-          <div class="diff-number">03</div>
-          <h3 class="diff-title">Lean by Design.</h3>
-          <p>No 50-person agency overhead. You work with the people doing the work. Fast, sharp, and your retainer stays honest.</p>
-        </div>
-      </div>
       <div style="margin-top: 48px;">
         <a href="#cta" class="section-cta section-cta--dark">STOP PAYING FOR HALF THE JOB →</a>
       </div>
@@ -1954,7 +1965,7 @@
         <!-- BOSS -->
         <div class="case-study reveal">
           <div class="cs-video">
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop playsinline preload="none">
               <source src="assets/Video/compressed/boss_reel.mp4" type="video/mp4">
             </video>
           </div>
@@ -1987,7 +1998,7 @@
         <!-- CONVERSE -->
         <div class="case-study reveal">
           <div class="cs-video">
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop playsinline preload="none">
               <source src="assets/Video/compressed/fa_converse_reel.mp4" type="video/mp4">
             </video>
           </div>
@@ -2020,7 +2031,7 @@
         <!-- MIDDLE CALLING -->
         <div class="case-study reveal">
           <div class="cs-video">
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop playsinline preload="none">
               <source src="assets/Video/compressed/middle_calling_reel.mp4" type="video/mp4">
             </video>
           </div>
@@ -2052,7 +2063,7 @@
         <!-- MAUI & SONS -->
         <div class="case-study reveal">
           <div class="cs-video">
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop playsinline preload="none">
               <source src="assets/Video/compressed/maui_and_sons_reel.mp4" type="video/mp4">
             </video>
           </div>
@@ -2092,14 +2103,7 @@
   <!-- ============ SERVICES ============ -->
   <section id="services">
     <div class="container">
-      <div class="reveal">
-        <p class="label">What We Do</p>
-        <h2 class="section-headline">Two Things.<br><span class="text-orange">Both Exceptional.</span></h2>
-        <div class="divider"></div>
-        <p style="font-size:1rem; color:var(--bone-dim); max-width:540px; line-height:1.75; margin-top:8px;">We are not a full-service agency. We do two things and we do them at a level most agencies can't match with ten.</p>
-      </div>
-
-      <div class="services-grid reveal reveal-delay-1">
+      <div class="services-grid reveal">
         <div class="service-card">
           <p class="service-icon">01 — Creative</p>
           <p class="service-category">Creative Production</p>
@@ -2128,39 +2132,6 @@
           </ul>
           <p class="service-note">We report on the numbers that affect your P&amp;L. That's it.</p>
         </div>
-      </div>
-      <div class="not-included reveal">
-        <p class="not-included-title">What We Don't Do</p>
-        <p class="not-included-strikeout">
-          <span>SEO
-            <svg class="scratch-svg" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp1-a" pathLength="1" stroke-width="6" d="M5,5 C60,18 120,40 195,55"/>
-              <path class="scratch-path sp1-b" pathLength="1" stroke-width="6" d="M195,5 C140,18 80,40 5,55"/>
-            </svg>
-          </span>
-          <span>Email Marketing
-            <svg class="scratch-svg" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp2" pathLength="1" stroke-width="5.5" d="M4,25 C60,20 120,42 200,38 C280,34 340,22 396,26"/>
-            </svg>
-          </span>
-          <span>Podcast Production
-            <svg class="scratch-svg" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp3-a" pathLength="1" stroke-width="5" d="M4,22 C120,18 250,26 396,20"/>
-              <path class="scratch-path sp3-b" pathLength="1" stroke-width="5" d="M4,35 C130,32 260,40 396,34"/>
-            </svg>
-          </span>
-          <span>Making Your Logo Bigger
-            <svg class="scratch-svg" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp4" pathLength="1" stroke-width="5" d="M4,30 C30,10 55,50 90,30 C125,10 155,50 195,30 C235,10 268,50 310,30 C350,10 385,50 425,30 C460,12 490,48 530,30 C550,20 568,38 596,28"/>
-            </svg>
-          </span>
-          <span>Community Management
-            <svg class="scratch-svg" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scratch-path sp5" pathLength="1" stroke-width="6" d="M5,8 C100,20 260,38 395,52"/>
-            </svg>
-          </span>
-        </p>
-        <p class="not-included-close"><strong>We stay in our lane because our lane is where we win.</strong> If you need those things, we'll point you to someone good.</p>
       </div>
     </div>
   </section>
@@ -2278,6 +2249,77 @@
           <div class="pricing-note">
             <strong>Ad spend is separate</strong> — that's your budget, we manage it. We take on a limited number of new clients per quarter. If the timing isn't right, we'll tell you.
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT WE DON'T DO ============ -->
+  <section style="background: var(--charcoal); padding: 80px 0;">
+    <div class="container">
+      <div class="not-included reveal">
+        <p class="not-included-title">What We Don't Do</p>
+        <p class="not-included-strikeout">
+          <span>SEO
+            <svg class="scratch-svg" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true">
+              <path class="scratch-path sp1-a" pathLength="1" stroke-width="6" d="M5,5 C60,18 120,40 195,55"/>
+              <path class="scratch-path sp1-b" pathLength="1" stroke-width="6" d="M195,5 C140,18 80,40 5,55"/>
+            </svg>
+          </span>
+          <span>Email Marketing
+            <svg class="scratch-svg" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
+              <path class="scratch-path sp2" pathLength="1" stroke-width="5.5" d="M4,25 C60,20 120,42 200,38 C280,34 340,22 396,26"/>
+            </svg>
+          </span>
+          <span>Podcast Production
+            <svg class="scratch-svg" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
+              <path class="scratch-path sp3-a" pathLength="1" stroke-width="5" d="M4,22 C120,18 250,26 396,20"/>
+              <path class="scratch-path sp3-b" pathLength="1" stroke-width="5" d="M4,35 C130,32 260,40 396,34"/>
+            </svg>
+          </span>
+          <span>Making Your Logo Bigger
+            <svg class="scratch-svg" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true">
+              <path class="scratch-path sp4" pathLength="1" stroke-width="5" d="M4,30 C30,10 55,50 90,30 C125,10 155,50 195,30 C235,10 268,50 310,30 C350,10 385,50 425,30 C460,12 490,48 530,30 C550,20 568,38 596,28"/>
+            </svg>
+          </span>
+          <span>Community Management
+            <svg class="scratch-svg" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
+              <path class="scratch-path sp5" pathLength="1" stroke-width="6" d="M5,8 C100,20 260,38 395,52"/>
+            </svg>
+          </span>
+        </p>
+        <p class="not-included-close"><strong>We stay in our lane because our lane is where we win.</strong> If you need those things, we'll point you to someone good.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section style="background: var(--black); padding: 100px 0; border-top: 1px solid var(--line);">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: 60px;">
+        <p class="label">Common Questions</p>
+        <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.9; color: var(--bone);">Before You Fill Out<br>The Form.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <p class="faq-q">What size brands do you work with?</p>
+          <p class="faq-a">DTC and lifestyle brands doing $3M–$10M/year. If you're running $10K–$80K/month in ad spend and want a team that makes and runs your ads, you're in the right place.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">What's the minimum commitment?</p>
+          <p class="faq-a">Month-to-month. No annual contracts. No cancellation fees. If we're not performing, you shouldn't stay — and we'll tell you that before you do.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">How fast do you start?</p>
+          <p class="faq-a">Typically within two weeks of signing. We audit first, then build. Most brands see movement in the first 30 days.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Do we need to have creative already?</p>
+          <p class="faq-a">No. Creative production is half of what we do. We build everything from concept to final cut — strategy, video, statics, copy.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Do you work with brands outside the US?</p>
+          <p class="faq-a">Yes, as long as you're running Meta Ads or Google Ads and your customer base is in English-speaking markets.</p>
         </div>
       </div>
     </div>
@@ -2429,7 +2471,7 @@
         <div class="footer-links">
           <a href="#work">Work</a>
           <a href="#services">Services</a>
-          <a href="#process">Why Us</a>
+          <a href="#why">Why Us</a>
           <a href="#pricing">Pricing</a>
           <a href="#contact">Contact</a>
         </div>
