@@ -459,7 +459,8 @@
       white-space: nowrap;
     }
 
-    .logo-pill:hover { opacity: 1; }
+    .logo-pill { opacity: 0.55; transition: opacity 0.2s ease; }
+    .logo-pill:hover { opacity: 0.9; }
 
     /* ============ PROBLEM ============ */
     #problem { background: var(--charcoal); position: relative; padding-bottom: 80px; }
@@ -1459,6 +1460,20 @@
 
     .form-textarea { min-height: 80px; resize: vertical; }
 
+    .radio-group { display: flex; flex-direction: column; gap: 8px; }
+    .radio-option {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid rgba(232,226,204,0.12);
+      cursor: pointer;
+      font-size: 14px;
+      color: rgba(232,226,204,0.75);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .radio-option:hover { border-color: var(--orange); color: var(--bone); }
+    .radio-option input[type="radio"] { accent-color: var(--orange); flex-shrink: 0; }
+    .radio-option:has(input:checked) { border-color: var(--orange); color: var(--bone); background: rgba(255,92,0,0.05); }
+
     /* Continue / Back nav */
     .form-nav {
       display: flex;
@@ -1834,7 +1849,7 @@
         <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="Fucking Awesome" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <img src="assets/logos/young%20nails.png" alt="Young Nails" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <img src="assets/logos/BOSS-Logo-w%201.png" alt="BOSS" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/MauiandSons.png" alt="Maui and Sons" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/MauiandSons.png" alt="Maui and Sons" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="Literati" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <!-- duplicate set 2 -->
         <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
@@ -1842,7 +1857,7 @@
         <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <!-- duplicate set 3 -->
         <img src="assets/logos/pdesaeryn9jhq6zkehfs.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
@@ -1850,7 +1865,7 @@
         <img src="assets/logos/Fucking%20Awesome_idcYU1Obua_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <img src="assets/logos/young%20nails.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <img src="assets/logos/BOSS-Logo-w%201.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
-        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;mix-blend-mode:screen;">
+        <img src="assets/logos/MauiandSons.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
         <img src="assets/logos/Literati_id-4XDnJif_0.png" alt="" aria-hidden="true" class="logo-pill" style="height:48px;width:auto;filter:brightness(0) invert(1);">
       </div>
     </div>
@@ -2215,6 +2230,13 @@
     </div>
   </section>
 
+  <!-- ============ MID-PAGE CTA ============ -->
+  <div style="background: var(--black); padding: 60px 0; text-align: center; border-top: 1px solid var(--line);">
+    <div class="container">
+      <a href="#contact" class="section-cta section-cta--orange">READY TO TALK ABOUT YOUR BRAND? →</a>
+    </div>
+  </div>
+
   <!-- ============ PRICING ============ -->
   <section id="pricing" >
     <div class="container">
@@ -2355,16 +2377,17 @@
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label" for="biggestProblem">Biggest paid media problem right now</label>
-              <textarea class="form-textarea" id="biggestProblem" placeholder="High CAC, bad creative, platform issues — what's the core problem?"></textarea>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="triedBefore">What have you tried that hasn't worked?</label>
-              <textarea class="form-textarea" id="triedBefore" placeholder="Agencies, in-house teams, specific strategies..."></textarea>
+              <label class="form-label">Biggest problem right now</label>
+              <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="biggestProblem" value="Creative that doesn't convert"> Creative that doesn't convert</label>
+                <label class="radio-option"><input type="radio" name="biggestProblem" value="Scaling paid media"> Scaling paid media profitably</label>
+                <label class="radio-option"><input type="radio" name="biggestProblem" value="Both"> Both — creative and media buying are broken</label>
+                <label class="radio-option"><input type="radio" name="biggestProblem" value="Starting from scratch"> Starting from scratch</label>
+              </div>
             </div>
             <div class="form-nav">
               <button class="form-btn-back" onclick="qfBack(3)">← Back</button>
-              <button class="form-btn-continue" style="width:auto;flex:1;margin-left:16px;" onclick="qfSubmit()">CONTINUE →</button>
+              <button class="form-btn-continue" style="width:auto;flex:1;margin-left:16px;" onclick="qfSubmit()">SUBMIT →</button>
             </div>
           </div>
 
