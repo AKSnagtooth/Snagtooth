@@ -2506,11 +2506,13 @@
             <h3 class="outcome-headline">We're built for brands<br>already in market.</h3>
             <p class="outcome-body">We work best with brands that are already running paid ads with a real budget behind them. If that's not you yet — it will be. Drop your email and we'll reach out when the timing makes sense.</p>
             <div id="waitlistForm">
-              <div class="waitlist-newsletter-form" id="waitlist-newsletter-form">
-                <input type="email" id="waitlist-email" placeholder="your@email.com">
-                <button onclick="submitBeehiiv('waitlist-email', 'waitlist-newsletter-form')">NOTIFY ME →</button>
-              </div>
-              <p class="waitlist-newsletter-confirm" style="display:none;">Got it. We'll be in touch when the timing's right.</p>
+              <iframe src="https://subscribe-forms.beehiiv.com/d683216e-ac4f-4023-96b9-20fd3070a51f"
+                class="beehiiv-embed"
+                data-test-id="beehiiv-embed"
+                frameborder="0"
+                scrolling="no"
+                style="width:100%; height:80px; margin:0; border-radius:0px; background-color:transparent; box-shadow:none;">
+              </iframe>
             </div>
           </div>
 
@@ -2530,11 +2532,13 @@
         <div class="footer-newsletter">
           <p class="footer-newsletter-label">THE SNAGTOOTH TEARDOWN</p>
           <p class="footer-newsletter-desc">One ad torn down every month. No fluff, just what works and what doesn't.</p>
-          <div class="footer-newsletter-form" id="footer-newsletter-form">
-            <input type="email" id="footer-email" placeholder="your@email.com">
-            <button onclick="submitBeehiiv('footer-email', 'footer-newsletter-form')">NOTIFY ME →</button>
-          </div>
-          <p class="footer-newsletter-confirm" style="display:none;">Got it. First teardown hits your inbox soon.</p>
+          <iframe src="https://subscribe-forms.beehiiv.com/d683216e-ac4f-4023-96b9-20fd3070a51f"
+            class="beehiiv-embed"
+            data-test-id="beehiiv-embed"
+            frameborder="0"
+            scrolling="no"
+            style="width:100%; height:80px; margin:0; border-radius:0px; background-color:transparent; box-shadow:none;">
+          </iframe>
         </div>
         <div class="footer-links">
           <a href="#work">Work</a>
@@ -2852,29 +2856,6 @@
       };
     })();
 
-    // Beehiiv newsletter submit
-    window.submitBeehiiv = function(inputId, formId) {
-      var email = document.getElementById(inputId).value;
-      if (!email || !email.includes('@')) return;
-      var isWaitlist = inputId === 'waitlist-email';
-      fetch('https://app.beehiiv.com/subscribe/d683216e-ac4f-4023-96b9-20fd3070a51f', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: email,
-          utm_source: 'website',
-          utm_medium: isWaitlist ? 'waitlist' : 'footer'
-        })
-      })
-      .then(function() {
-        var parent = document.getElementById(inputId).closest('.footer-newsletter-form, .waitlist-newsletter-form');
-        if (parent) parent.style.display = 'none';
-        var confirm = parent ? parent.nextElementSibling : null;
-        if (confirm) confirm.style.display = 'block';
-      })
-      .catch(function() {});
-    };
-
     // FAQ accordion
     document.querySelectorAll('.faq-item').forEach(function(item) {
       item.querySelector('.faq-q').addEventListener('click', function() {
@@ -2885,6 +2866,6 @@
     });
   </script>
   <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-  <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+  <script async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
 </body>
 </html>
