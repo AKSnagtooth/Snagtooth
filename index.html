@@ -2854,10 +2854,15 @@
     window.submitBeehiiv = function(inputId, formId) {
       var email = document.getElementById(inputId).value;
       if (!email || !email.includes('@')) return;
-      fetch('https://subscribe-forms.beehiiv.com/d683216e-ac4f-4023-96b9-20fd3070a51f/subscriptions', {
+      var isWaitlist = inputId === 'waitlist-email';
+      fetch('https://app.beehiiv.com/subscribe/d683216e-ac4f-4023-96b9-20fd3070a51f', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email })
+        body: JSON.stringify({
+          email: email,
+          utm_source: 'website',
+          utm_medium: isWaitlist ? 'waitlist' : 'footer'
+        })
       })
       .then(function() {
         var parent = document.getElementById(inputId).closest('.footer-newsletter-form, .waitlist-newsletter-form');
